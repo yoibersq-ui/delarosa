@@ -1,0 +1,71 @@
+================================================================================
+GUÍA COMPLETA: DÓNDE SUBIR LA APP 100% GRATIS SI NO QUIERES USAR NETLIFY
+ESTUDIO: DELAROSA NAIL DESIGNER - APARTADÓ, ANTIOQUIA
+================================================================================
+
+1. LA VERDAD SOBRE NETLIFY (TRANQUILIDAD TOTAL):
+--------------------------------------------------------------------------------
+* Netlify NO TIENE vencimiento.
+* El plan gratuito de Netlify ("Starter Plan") es 100% GRATIS DE POR VIDA.
+* No te cobra después de un tiempo ni te pide tarjeta de crédito.
+* Sin embargo, si alguna vez no deseas usar Netlify o quieres tener una copia
+  en otro servidor gratis permanente, aquí tienes las mejores alternativas:
+
+================================================================================
+2. LAS MEJORES ALTERNATIVAS 100% GRATIS Y PERMANENTES:
+================================================================================
+
+OPCIÓN A: VERCEL (Recomendada - La más moderna y rápida)
+--------------------------------------------------------------------------------
+Vercel es la plataforma número 1 para sitios web modernos.
+* Costo: 100% GRATIS DE POR VIDA.
+* Tiempo de subida: 30 segundos.
+* Pasos para subir:
+  1. Entra en tu navegador a: https://vercel.com
+  2. Haz clic en "Sign Up" (puedes entrar con tu cuenta de Google/Gmail).
+  3. Haz clic en "Add New..." -> "Project".
+  4. Arrastra la carpeta "Delarosa_Nail_Designer_App" y suéltala.
+  5. Haz clic en "Deploy".
+  6. ¡Listo! Vercel te dará un enlace permanente con candado seguro (HTTPS)
+     como: https://delarosa-nail-designer.vercel.app
+
+--------------------------------------------------------------------------------
+OPCIÓN B: GITHUB PAGES (La más duradera del mundo - Propiedad de Microsoft)
+--------------------------------------------------------------------------------
+GitHub es donde se guarda el código de las mayores empresas del mundo.
+* Costo: 100% GRATIS PARA SIEMPRE (No caduca nunca).
+* Pasos:
+  1. Entra a: https://github.com y crea una cuenta gratuita.
+  2. Crea un nuevo repositorio (por ejemplo llamado "delarosa-app").
+  3. Sube los archivos de la carpeta.
+  4. Ve a Settings -> Pages -> Selecciona la rama "main" y pulsa Save.
+  5. Tu enlace quedará activo para siempre en:
+     https://tu-usuario.github.io/delarosa-app/
+
+--------------------------------------------------------------------------------
+OPCIÓN C: RENDER (https://render.com)
+--------------------------------------------------------------------------------
+* Ofrece "Static Sites" 100% gratuitos ilimitados con SSL automático.
+
+--------------------------------------------------------------------------------
+OPCIÓN D: INSTALACIÓN DIRECTA EN EL IPHONE DE JULIETH (COMO APP NATIVA)
+--------------------------------------------------------------------------------
+Si Julieth quiere tener la app directamente en su iPhone como una aplicación real:
+  1. Abre el enlace web de la app en SAFARI en su iPhone.
+  2. Toca el botón de COMPARTIR (el cuadradito con la flecha hacia arriba que
+     está abajo en el centro de Safari).
+  3. Baja en el menú y selecciona: "Añadir a pantalla de inicio" (Add to Home Screen).
+  4. Toca "Añadir".
+  5. ¡Listo! En la pantalla de su iPhone aparecerá el ícono de "Delarosa Nails"
+     exactamente como si la hubiera descargado del App Store, y funciona siempre.
+
+================================================================================
+3. SEGURIDAD Y PRIVACIDAD DE LAS CLIENTAS:
+================================================================================
+* NINGUNA clienta que abra la app en su teléfono recibirá notificaciones,
+  alarmas ni información de otras clientas.
+* Las clientas únicamente pueden agendar su propia cita y enviar el mensaje
+  de WhatsApp con sus fotos de referencia directamente a Julieth (+57 322 637 6819).
+* ÚNICAMENTE Julieth recibe todas las citas, los comprobantes, las fotos y
+  las alarmas sonoras en su propio celular y en su correo (delarosaa02@gmail.com).
+================================================================================

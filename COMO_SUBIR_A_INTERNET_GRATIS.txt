@@ -1,0 +1,74 @@
+========================================================================
+   🌐 GUÍA OFICIAL: TU LINK PÚBLICO 100% GRATIS DE POR VIDA (SIN LÍMITES)
+========================================================================
+
+Para que cualquier persona desde su celular (con datos 4G/5G, iPhone o Android) 
+pueda entrar a agendar citas desde la biografía de Instagram (@delarosaa_02) 
+o WhatsApp a cualquier hora del día (sin depender de tener el computador encendido), 
+la app se sube a internet con un enlace seguro (HTTPS).
+
+------------------------------------------------------------------------
+¿HAY QUE PAGAR ALGO? ¿TIENE LÍMITES DE TIEMPO?
+------------------------------------------------------------------------
+❌ NO HAY QUE PAGAR ABSOLUTAMENTE NADA (0 PESOS).
+❌ NO PIDE TARJETA DE CRÉDITO NI CUENTAS BANCARIAS.
+❌ NO TIENE LÍMITE DE TIEMPO (no vence ni se apaga a los 30 días).
+❌ NO TIENE LÍMITES PARA ESTE USO (soporta más de 100.000 visitas al mes gratis).
+
+El servicio se llama NETLIFY DROP y es 100% GRATIS de por vida.
+
+------------------------------------------------------------------------
+PASO A PASO PARA SUBIR EN 10 SEGUNDOS (MÉTODO ULTRA FÁCIL):
+------------------------------------------------------------------------
+
+En tu Escritorio tienes un archivo comprimido especial listo llamado:
+📦 "SUBIR_A_NETLIFY_DELAROSA.zip"
+
+1. Entra desde tu computador a esta página oficial gratuita:
+   👉 https://app.netlify.com/drop
+
+2. Verás un círculo o caja grande en el centro que dice:
+   "Drag and drop your site output folder here"
+
+3. Arrastra el archivo 📦 "SUBIR_A_NETLIFY_DELAROSA.zip" desde tu Escritorio 
+   y suéltalo dentro de ese círculo.
+
+4. Espera 10 segundos mientras Netlify lo desempaca y publica. ¡Y LISTO!
+   Netlify te creará un enlace público en internet con candado de seguridad SSL.
+   Ejemplo: https://delarosa-nails.netlify.app
+
+5. Si quieres cambiarle el nombre al enlace para que quede personalizado:
+   - Haz clic en "Site configuration" -> "Change site name".
+   - Escribe el nombre que quieras, por ejemplo:
+     "delarosanails" o "delarosa-designer"
+   - Tu link final quedará así:
+     👉 https://delarosanails.netlify.app
+
+------------------------------------------------------------------------
+📱 LOS DOS ENLACES QUE TIENES:
+------------------------------------------------------------------------
+1. ENLACE PÚBLICO PARA CLIENTAS (Agendamiento Limpio):
+   👉 https://tu-nombre.netlify.app/
+   (Aquí las clientas agendan sus citas, ven precios, fotos y menú VIP).
+
+2. ENLACE PRIVADO PARA JULIETH (Panel de Manicurista & Finanzas):
+   👉 https://tu-nombre.netlify.app/admin.html
+   (Aquí Julieth abre su panel en su iPhone o PC, bloquea horas de 2 a 4 PM, 
+    gestiona su Meta de $1.000.000 para el mueble, agrega servicios y ve alarmas).
+
+------------------------------------------------------------------------
+📲 CÓMO INSTALARLO EN EL IPHONE DE JULIETH (Safari):
+------------------------------------------------------------------------
+1. Julieth abre su link privado (https://tu-nombre.netlify.app/admin.html) en Safari.
+2. Toca el botón COMPARTIR 📤 (el cuadrito con la flecha apuntando arriba en el centro inferior).
+3. Desliza hacia abajo y toca "Agregar a Inicio" (Add to Home Screen).
+4. ¡Listo! Le queda una aplicación con el icono oficial de Delarosa en su pantalla principal.
+
+------------------------------------------------------------------------
+¿CÓMO CAMBIAR EL NÚMERO DE WHATSAPP PARA PROBAR PRIMERO Y LUEGO PONER EL DE ELLA?
+------------------------------------------------------------------------
+1. Entra al panel de manicurista (admin.html o contraseña: GabrielyEly25).
+2. Pulsa el botón "✏️ Modificar Fotos y Redes".
+3. En el campo "WhatsApp / Celular" pon tu propio número para hacer todas las pruebas que quieras.
+4. Pulsa "💾 Guardar Todos los Cambios". ¡Listo!
+Cuando vayas a entregarle la sorpresa a Julieth, vuelves a entrar y pones el número de ella (+57 322 637 6819).

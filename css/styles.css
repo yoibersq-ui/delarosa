@@ -1,0 +1,473 @@
+/* styles.css - DELAROSA NAIL DESIGNER (Luxury Obsidian Black, Liquid Chrome Silver & Metallic Slate) */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,900;1,400;1,600&display=swap');
+
+:root {
+  /* Paleta Exclusiva: Obsidian Black, Liquid Chrome, Plata Metalizada y Grafito */
+  --bg-obsidian: #09090c;
+  --bg-card: rgba(18, 18, 24, 0.95);
+  --bg-card-subtle: rgba(26, 26, 36, 0.85);
+  --border-silver: rgba(226, 232, 240, 0.22);
+  --border-silver-strong: #cbd5e1;
+  --border-slate-dark: #272733;
+  --silver-glow: rgba(226, 232, 240, 0.16);
+  --silver-bright: #f8fafc;
+  --silver-mid: #cbd5e1;
+  --silver-muted: #94a3b8;
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  color: #f1f5f9;
+  background-color: #09090c;
+  background-image: 
+    url('../assets/img/mural_art_bg.svg'),
+    radial-gradient(circle at 50% 0%, #161622 0%, #0d0d12 45%, #070709 100%);
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover;
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+.font-serif-luxury {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+/* Texto Metálico Cromado con Brillo */
+.text-chrome-gradient {
+  background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 25%, #cbd5e1 55%, #94a3b8 80%, #ffffff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
+}
+
+.text-silver-subtle {
+  color: #cbd5e1;
+}
+
+/* ========================================================
+   SWITCHER DE VISTA: COMPUTADOR VS MODO CELULAR
+   ======================================================== */
+
+.mobile-frame-view {
+  max-width: 440px !important;
+  margin: 1.5rem auto 5rem auto !important;
+  border: 10px solid #1a1a24 !important;
+  border-radius: 46px !important;
+  box-shadow: 0 25px 80px -15px rgba(0, 0, 0, 0.85), 0 0 0 2px rgba(226, 232, 240, 0.3) !important;
+  background: #0d0d13 !important;
+  position: relative !important;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  overflow: hidden !important;
+}
+
+.mobile-frame-view::before {
+  content: '';
+  display: block;
+  width: 130px;
+  height: 20px;
+  background: #14141e;
+  margin: 0 auto 10px auto;
+  border-bottom-left-radius: 14px;
+  border-bottom-right-radius: 14px;
+  border: 1px solid rgba(226, 232, 240, 0.15);
+  border-top: none;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+/* ========================================================
+   DISEÑO ESTÉTICO OBSIDIAN & LIQUID CHROME (MURAL DE JULIETH)
+   ======================================================== */
+
+/* Contenedor Hero Mural Armónico */
+.mural-hero-container {
+  position: relative;
+  background: rgba(15, 15, 22, 0.94);
+  border: 1.5px solid rgba(226, 232, 240, 0.22);
+  border-radius: 2.25rem;
+  overflow: hidden;
+  box-shadow: 0 24px 50px -15px rgba(0, 0, 0, 0.7), 0 0 30px -10px rgba(226, 232, 240, 0.12);
+  backdrop-filter: blur(20px);
+}
+
+.mural-hero-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 480px;
+  height: 100%;
+  background: url('../assets/img/mural_art_bg.svg') no-repeat top right;
+  background-size: cover;
+  opacity: 0.25;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Insignia / Logo Oficial en Plata Cromada con Definición Ultra Nítida (Sin desenfoque) */
+.logo-chrome-badge {
+  position: relative;
+  border-radius: 9999px;
+  padding: 1.5px;
+  background: linear-gradient(135deg, #f8fafc 0%, #64748b 50%, #e2e8f0 100%);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.7);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+  overflow: hidden;
+}
+
+.logo-chrome-badge:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.9), 0 0 10px rgba(226, 232, 240, 0.3);
+}
+
+.logo-chrome-badge img {
+  border-radius: 9999px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  display: block;
+}
+
+/* Retrato con Marco Artístico de Cinta Plata y Negro */
+.mural-portrait-wrapper {
+  position: relative;
+  display: inline-block;
+  padding: 8px;
+}
+
+.mural-portrait-frame {
+  position: relative;
+  z-index: 2;
+  border-radius: 2rem;
+  overflow: hidden;
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.8), 0 0 0 2px rgba(226, 232, 240, 0.35);
+  border: 4px solid #161622;
+  background: #0f0f17;
+}
+
+.mural-portrait-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform 0.4s ease;
+}
+
+.mural-portrait-frame:hover img {
+  transform: scale(1.03);
+}
+
+/* Badges con Combinación Plata y Cromo */
+.mural-pill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 1.1rem;
+  border-radius: 9999px;
+  background: rgba(22, 22, 32, 0.9);
+  border: 1px solid rgba(226, 232, 240, 0.25);
+  box-shadow: 0 4px 14px -3px rgba(0, 0, 0, 0.4);
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #f8fafc;
+  letter-spacing: 0.02em;
+}
+
+.mural-pill-badge-black {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 1.1rem;
+  border-radius: 9999px;
+  background: #09090c;
+  border: 1.5px solid #cbd5e1;
+  box-shadow: 0 4px 16px -2px rgba(203, 213, 225, 0.2);
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+/* ========================================================
+   TARJETAS & PANELES EN OBSIDIAN DARK Y PLATA CROMO
+   ======================================================== */
+
+.glass-panel {
+  background: rgba(16, 16, 24, 0.93) !important;
+  border: 1px solid rgba(226, 232, 240, 0.18) !important;
+  border-radius: 1.75rem;
+  box-shadow: 0 20px 45px -12px rgba(0, 0, 0, 0.65), 0 0 20px -8px rgba(226, 232, 240, 0.08);
+  backdrop-filter: blur(18px);
+  color: #f1f5f9;
+}
+
+.glass-card-hover {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 45px -8px rgba(0, 0, 0, 0.75), 0 0 20px rgba(226, 232, 240, 0.2);
+  border-color: #cbd5e1 !important;
+}
+
+/* Botones Plata Líquida Cromada */
+.btn-chrome {
+  background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 25%, #cbd5e1 65%, #94a3b8 100%) !important;
+  color: #09090c !important;
+  font-weight: 900 !important;
+  border: 1px solid #ffffff !important;
+  box-shadow: 0 8px 24px -5px rgba(255, 255, 255, 0.25), 0 0 15px rgba(203, 213, 225, 0.15);
+  transition: all 0.25s ease;
+}
+
+.btn-chrome:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+  box-shadow: 0 12px 30px -5px rgba(255, 255, 255, 0.4), 0 0 25px rgba(226, 232, 240, 0.3);
+}
+
+.btn-luxury {
+  background: #09090c !important;
+  color: #ffffff !important;
+  box-shadow: 0 8px 25px -6px rgba(0, 0, 0, 0.6);
+  transition: all 0.2s ease;
+  border: 1.5px solid rgba(226, 232, 240, 0.35) !important;
+}
+
+.btn-luxury:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px -6px rgba(0, 0, 0, 0.8), 0 0 18px rgba(226, 232, 240, 0.25);
+  border-color: #ffffff !important;
+  background: #12121c !important;
+}
+
+.btn-gold {
+  /* Reemplazado por estilo plata líquida cromada */
+  background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 55%, #94a3b8 100%) !important;
+  color: #09090c !important;
+  box-shadow: 0 8px 22px -6px rgba(203, 213, 225, 0.3) !important;
+  transition: all 0.2s ease;
+  border: 1px solid rgba(255, 255, 255, 0.8) !important;
+  font-weight: 800 !important;
+}
+
+.btn-gold:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+  box-shadow: 0 12px 28px -6px rgba(226, 232, 240, 0.45) !important;
+}
+
+/* Stepper de Pasos en Obsidian & Plata */
+.step-item.active .step-number {
+  background: #ffffff !important;
+  color: #09090c !important;
+  border: 3px solid #cbd5e1 !important;
+  box-shadow: 0 0 0 4px rgba(226, 232, 240, 0.3), 0 0 20px rgba(255, 255, 255, 0.4) !important;
+  font-weight: 900 !important;
+}
+
+.step-item.completed .step-number {
+  background: #1e293b !important;
+  color: #cbd5e1 !important;
+  border: 2px solid #94a3b8 !important;
+}
+
+.step-item .step-number {
+  background: #0f0f17 !important;
+  color: #94a3b8 !important;
+  border: 2px solid #334155 !important;
+  font-weight: 800;
+}
+
+/* Tarjetas Seleccionables */
+.selectable-card {
+  cursor: pointer;
+  border: 1.5px solid rgba(148, 163, 184, 0.22) !important;
+  background-color: rgba(18, 18, 26, 0.85) !important;
+  color: #f1f5f9 !important;
+  transition: all 0.22s ease;
+}
+
+.selectable-card:hover {
+  border-color: #cbd5e1 !important;
+  background-color: rgba(28, 28, 40, 0.9) !important;
+  transform: translateY(-1.5px);
+}
+
+.selectable-card.selected {
+  border-color: #ffffff !important;
+  background-color: rgba(30, 41, 59, 0.75) !important;
+  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.6), 0 0 18px rgba(226, 232, 240, 0.22) !important;
+}
+
+/* Inputs y Selectores de Formulario */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+input[type="time"],
+input[type="number"],
+input[type="password"],
+input[type="url"],
+textarea,
+select {
+  background-color: rgba(13, 13, 19, 0.9) !important;
+  border-color: #334155 !important;
+  color: #f8fafc !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: #cbd5e1 !important;
+  box-shadow: 0 0 0 3px rgba(226, 232, 240, 0.2) !important;
+  outline: none !important;
+}
+
+/* Zona de Arrastre de Fotos */
+.dropzone-container {
+  border: 2px dashed #475569 !important;
+  background: rgba(15, 15, 23, 0.7) !important;
+  transition: all 0.2s ease;
+}
+
+.dropzone-container:hover, .dropzone-container.drag-over {
+  border-color: #cbd5e1 !important;
+  background: rgba(26, 26, 38, 0.85) !important;
+  transform: scale(1.005);
+}
+
+/* Galería de Miniaturas */
+.image-thumb-card {
+  position: relative;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  aspect-ratio: 1 / 1;
+  border: 1.5px solid #334155;
+  background: #0c0c12;
+}
+
+.image-thumb-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.image-thumb-card:hover img {
+  transform: scale(1.05);
+}
+
+.image-thumb-card .overlay-actions {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(9, 9, 12, 0.92) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 0.75rem;
+}
+
+.image-thumb-card:hover .overlay-actions {
+  opacity: 1;
+}
+
+/* Ticket de Agendamiento en Obsidian Plata */
+.ticket-container {
+  background: #111119 !important;
+  border: 2px solid #334155 !important;
+  position: relative;
+  color: #f1f5f9 !important;
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.7), 0 0 20px rgba(226, 232, 240, 0.1);
+}
+
+.ticket-divider {
+  border-top: 2px dashed #475569 !important;
+  position: relative;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bellChime {
+  0%, 100% { transform: rotate(0deg); }
+  15% { transform: rotate(14deg); }
+  30% { transform: rotate(-14deg); }
+  45% { transform: rotate(8deg); }
+  60% { transform: rotate(-8deg); }
+  75% { transform: rotate(4deg); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 15px rgba(226, 232, 240, 0.2); }
+  50% { box-shadow: 0 0 28px rgba(255, 255, 255, 0.45); }
+}
+
+.animate-bell {
+  animation: bellChime 1.2s infinite ease-in-out;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 2.5s infinite ease-in-out;
+}
+
+/* Lightbox Modal */
+.lightbox-modal {
+  backdrop-filter: blur(12px);
+  background: rgba(7, 7, 10, 0.94);
+}
+
+/* Scrollbar Personalizado en Plata Cromada y Obsidian */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #09090c;
+}
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 4px;
+  border: 1px solid rgba(226, 232, 240, 0.15);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Barra inferior móvil */
+@media (max-width: 768px) {
+  .mobile-bottom-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 40;
+    padding: 0.75rem 1rem;
+    background: rgba(13, 13, 19, 0.96);
+    backdrop-filter: blur(16px);
+    border-top: 1.5px solid #334155;
+    box-shadow: 0 -8px 25px rgba(0, 0, 0, 0.7);
+  }
+}

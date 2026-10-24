@@ -1,0 +1,55 @@
+========================================================================
+     📱 GUÍA: CÓMO CONVERTIR TU WEB EN UNA APP (APK) PARA ANDROID 📱
+     Delarosa Nail Designer - Julieth De la Rosa (@delarosaa_02)
+========================================================================
+
+¡Hola! Tu aplicación ya incluye todos los archivos técnicos necesarios
+(manifest.json, Service Worker sw.js e iconos de alta definición 192x192 y 512x512)
+para funcionar como una App Nativa completa en Android y iPhone.
+
+Tienes DOS formas de tenerla como App instalable en celulares:
+
+------------------------------------------------------------------------
+OPCIÓN 1: INSTALACIÓN INSTANTÁNEA (La más fácil y recomendada - 100% Gratis)
+------------------------------------------------------------------------
+No necesitas descargar archivos pesados ni pagar tiendas de apps:
+1. Una vez subas la carpeta a Netlify (Netlify Drop) y tengas tu enlace web
+   (ej: https://delarosa-nails.netlify.app):
+2. Envías ese enlace por WhatsApp a tus clientas o lo abres en tu celular con Google Chrome.
+3. Al entrar a la página en el celular, automáticamente aparecerá un botón abajo:
+   "Agregar a la pantalla principal" o "Instalar Aplicación".
+4. Si no aparece solo, tocas los tres puntos de Chrome (⋮) arriba a la derecha y eliges:
+   "Instalar Aplicación" o "Agregar a pantalla de inicio".
+5. ¡LISTO! En 3 segundos queda instalada con su icono cromado de Delarosa Nail Designer,
+   se abre en pantalla completa (sin barra de navegador) y funciona exactamente igual
+   que cualquier aplicación descargada de la Play Store.
+
+------------------------------------------------------------------------
+OPCIÓN 2: GENERAR EL ARCHIVO .APK DIRECTO (Para compartir el instalador)
+------------------------------------------------------------------------
+Si deseas tener un archivo con extensión .APK para pasarlo por WhatsApp o Bluetooth
+como un archivo instalable en Android:
+
+1. Ve desde tu computador a la página oficial gratuita de Microsoft para Apps:
+   👉 https://www.pwabuilder.com
+2. En la casilla central que dice "Enter the URL to your PWA", pega el enlace de tu web de Netlify.
+   (Ejemplo: https://delarosa-nails.netlify.app)
+3. Haz clic en "Start". PWABuilder analizará la web (obtendrá un puntaje de 100% porque ya dejamos
+   el manifest.json y sw.js totalmente listos).
+4. Haz clic en el botón verde "Package for Stores" y selecciona "Android".
+5. Selecciona la opción "Generate APK / Package" y descárgalo a tu computador.
+6. ¡Listo! Ya tienes tu archivo APK listo para instalar en cualquier teléfono Android.
+
+------------------------------------------------------------------------
+RECORDATORIO DEL NÚMERO DE WHATSAPP:
+------------------------------------------------------------------------
+- La aplicación tiene configurado el número oficial con indicativo Colombia (+57 322 637 6819).
+- Si deseas cambiarlo en cualquier momento por tu número personal para hacer pruebas
+  (y luego volver a poner el de Julieth como sorpresa):
+  1. Entra a la web.
+  2. Haz clic en "👑 Panel Manicurista".
+  3. Ingresa la contraseña: GabrielyEly25
+  4. Ve a la pestaña "Identidad de Marca".
+  5. Cambia el número de teléfono y guarda los cambios.
+  ¡Se actualizará de inmediato en todos los botones de la app sin que tengas que volver a subir archivos!
+========================================================================

@@ -1,0 +1,116 @@
+================================================================================
+💎 DELAROSA NAIL DESIGNER - GUÍA DE LOS 2 ENLACES, IPHONE Y META DEL MUEBLE
+================================================================================
+
+¡Todo quedó implementado exactamente como lo pediste!
+
+────────────────────────────────────────────────────────────────────────────────
+1. LOS DOS ENLACES CLAROS (CLIENTAS VS. ADMIN)
+────────────────────────────────────────────────────────────────────────────────
+
+Cuando subas la carpeta a Netlify (o Vercel), obtendrás tu link público. 
+Tendrás estos dos accesos diferenciados:
+
+👉 ENLACE 1 (Para compartir con tus Clientas):
+   https://[tu-sitio].netlify.app/
+   • 100% privado para agendamiento: las clientas NUNCA ven el botón de admin.
+   • Ellas ven los servicios, los precios oficiales, las fotos de tus trabajos,
+     eligen su diseño, bebida de cortesía y te envían el agendamiento por WhatsApp 
+     con sus fotos de referencia y el anticipo.
+
+👉 ENLACE 2 (Para Julieth - Panel de Manicurista):
+   https://[tu-sitio].netlify.app/admin.html
+   • Acceso exclusivo para la manicurista con clave maestra: GabrielyEly25
+   • Desde aquí Julieth puede:
+     - Bloquear horarios de 2:00 a 4:00 PM, mañanas o días enteros en 1 clic.
+     - Cambiar el horario de atención (de 9:00 AM a 7:00 PM o el que prefiera).
+     - Modificar precios o agregar nuevos servicios y técnicas.
+     - Pasar lista de asistencia (Asistió / Falta / Por Llegar).
+     - Controlar sus finanzas y la meta del mueble de $1.000.000 COP.
+
+────────────────────────────────────────────────────────────────────────────────
+2. CÓMO TENER LA APP EN IPHONE (SIN COMPLICACIONES DE APK)
+────────────────────────────────────────────────────────────────────────────────
+
+En iPhone (iOS) no se instalan archivos .APK porque los APK son solo de Android.
+En iPhone, Apple tiene una solución mucho más rápida, liviana y oficial (PWA):
+
+Paso a Paso para que Julieth tenga su Panel como App en su iPhone:
+1. Abre **Safari** en el iPhone y entra a:
+   https://[tu-sitio].netlify.app/admin.html
+2. En la parte inferior de Safari, toca el botón de **Compartir 📤** 
+   (el icono de un cuadrito con una flecha que apunta hacia arriba).
+3. Desliza hacia abajo en el menú y toca **"Agregar a Inicio"** (Add to Home Screen).
+4. Dale el nombre que quieras (ej: "Delarosa Admin 👑") y toca **"Agregar"**.
+5. ¡Listo! En la pantalla de inicio de su iPhone le quedará un icono idéntico 
+   al de una app descargada del App Store. Al tocarlo, se abre en pantalla completa 
+   sin barra de navegador.
+
+────────────────────────────────────────────────────────────────────────────────
+3. ¿CÓMO LLEGAN LAS ALARMAS AL IPHONE?
+────────────────────────────────────────────────────────────────────────────────
+
+A. Para Clientas con iPhone:
+   En el Paso 6 de la reserva, la clienta tiene el botón:
+   • **⏰ Alarma iPhone / .ICS**: Al tocarlo en su iPhone, Safari abre 
+     automáticamente el Calendario nativo de Apple. La clienta solo toca "Agregar" 
+     y le quedan programadas las 4 alarmas sonoras (24h, 2h, 1h y 10 minutos antes).
+   • También tiene los botones de **Google Calendar** y **Outlook**.
+
+B. Para Julieth en su iPhone:
+   Cuando la clienta agenda y envía el mensaje a WhatsApp:
+   Al final del mensaje le llegan dos enlaces directos a Julieth:
+   - 📅 Google Calendar (Gmail)
+   - 📬 Outlook / Hotmail
+   Julieth solo toca el enlace dentro de su WhatsApp en el iPhone y la cita 
+   se agenda de inmediato con sus alarmas sonoras.
+   Además, dentro de su panel de citas, tiene el botón de cada cita para 
+   descargar la alarma en 1 clic.
+
+────────────────────────────────────────────────────────────────────────────────
+4. NUEVO MÓDULO: FINANZAS, GASTOS & META DEL MUEBLE ($1.000.000 COP)
+────────────────────────────────────────────────────────────────────────────────
+
+En el panel de manicurista agregamos la pestaña **"💰 Ingresos & Meta Mueble"**:
+
+• **Meta de Ahorro del Mueble ($1.000.000 COP):**
+  - Muestra una alcancía digital visual con barra de progreso interactiva.
+  - Te muestra:
+    * Cuánto dinero llevas recaudado.
+    * Cuánto dinero falta para comprar el mueble.
+    * Porcentaje completado (ej: 35%).
+    * Cuántas citas promedio te faltan para alcanzar la meta.
+  - Botón **"💰 Asignar Ganancias"**: Te permite meter aportes de $20.000, 
+    $50.000, $100.000 o lo que ganes de una cita directamente a la meta del mueble.
+  - Botón **"✏️ Modificar Meta"**: Por si el mueble cuesta más o menos, o si en 
+    el futuro quieres cambiar la meta a otro equipo para el spa.
+
+• **Control de Ingresos y Gastos:**
+  - **Ingresos Totales**: Suma automática de las citas completadas + ingresos extras.
+  - **Gastos en Insumos**: Puedes registrar compras de monómero, acrílico, esmaltes,
+    pinceles, arriendo, etc., con fecha y valor.
+  - **Ganancia Neta Real**: Te muestra cuánto dinero te queda realmente libre.
+  - Historial completo de movimientos con opción de eliminar o agregar.
+
+────────────────────────────────────────────────────────────────────────────────
+5. SINCRONIZACIÓN EN TIEMPO REAL ENTRE ADMIN Y CLIENTAS
+────────────────────────────────────────────────────────────────────────────────
+
+Para que lo que modifiques en el panel se actualice en los celulares de las clientas:
+
+OPCIÓN A (Sincronización en la Nube con Google Firebase - 100% Gratis):
+1. En el panel de admin ve a la pestaña **"☁️ Sincronización en la Nube"**.
+2. Con tu correo de Gmail (delarosaa02@gmail.com) creas tu base de datos 
+   gratuita en console.firebase.google.com (toma 2 minutos, no te cobran nada).
+3. Pegas la URL en la pestaña y tocas "Probar y Conectar".
+4. ¡A partir de ese instante, cualquier precio que cambies o si bloqueas de 
+   2:00 a 4:00 PM, se actualiza en el mismo segundo en los celulares de todas 
+   las clientas del mundo!
+
+OPCIÓN B (Sincronización Offline en 1 Clic):
+Si no quieres usar Firebase:
+En la misma pestaña de nube hay un botón morado que dice:
+**"📥 Descargar Archivo sample-data.js Actualizado"**
+Al tocarlo, se descarga tu catálogo con los precios y bloqueos que modificaste.
+Solo lo reemplazas en la carpeta de tu Escritorio y arrastras a Netlify.
+================================================================================

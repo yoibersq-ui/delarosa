@@ -1,0 +1,68 @@
+========================================================================
+    ✨ DELAROSA NAIL DESIGNER - APLICACIÓN EXCLUSIVA DE AGENDAMIENTO ✨
+    Diseñada especialmente para Julieth De la Rosa (@delarosaa_02)
+    Apartadó - Antioquia (Barrio Laureles), Colombia
+========================================================================
+
+¡Hola, Julieth! Esta aplicación web personalizada fue creada especialmente para ti,
+con una estética boutique de lujo inspirada en el hermoso mural de arte con 
+líneas orgánicas y curvas fluidas que pintaste en la pared de tu estudio. 
+Está diseñada en elegantes tonos marfil, carbón y champaña dorado para 
+gestionar tu agenda de uñas, clientes, cobros de anticipos y recordatorios.
+
+------------------------------------------------------------------------
+1. CÓMO ABRIR LA APP DESDE ESTA MEMORIA USB O COMPUTADOR
+------------------------------------------------------------------------
+- Opción 1: Haz doble clic en el archivo "Abrir_App.bat" (o directamente
+  en "index.html"). Se abrirá de inmediato en tu navegador.
+- Opción 2: Haz doble clic en "Iniciar_Servidor_Local.bat". Abrirá la app
+  con su servidor local optimizado para celulares conectados a tu Wi-Fi.
+
+------------------------------------------------------------------------
+2. CÓMO ENTRAR AL PANEL PRIVADO DE MANICURISTA
+------------------------------------------------------------------------
+- Haz clic arriba a la derecha en el botón "👑 Panel Manicurista".
+- Tu Contraseña Maestra de Acceso es:
+  
+      GabrielyEly25
+
+- Dentro del panel podrás:
+  * Ver tu agenda de citas programadas y filtrar por Hoy, Mañana, Pendientes.
+  * Cambiar tu foto de perfil o portada.
+  * Cambiar la imagen oficial de tu carta de precios cuando saques nuevos volantes.
+  * Modificar precios en pesos colombianos (COP) y añadir nuevos servicios.
+  * Modificar tus enlaces a Instagram, Facebook y tu número de WhatsApp.
+  * Bloquear horarios personales (almuerzo, diligencias).
+  * Exportar tu lista de clientes y citas a Excel.
+
+------------------------------------------------------------------------
+3. SISTEMA DE ALARMAS CON SONIDO EN EL CELULAR (PANTALLA DE BLOQUEO)
+------------------------------------------------------------------------
+- Al agendar o consultar cualquier cita en el panel, verás el botón:
+  "⏰ Alarma en mi Celular".
+- Al tocarlo en tu iPhone (Safari) o Android (Chrome), se agrega al
+  Calendario nativo de tu teléfono con 4 alarmas de sonido automáticas:
+  * ⏰ 24 Horas Antes (Recordatorio 1 día antes).
+  * ⏰ 2 Horas Antes (Para salir hacia el estudio o alistar materiales).
+  * ⏰ 1 Hora Antes (Aviso para iniciar preparación).
+  * 🔔 10 Minutos Antes (Timbre fuerte: ¡La cita está por comenzar!).
+- Estas alarmas saltan en tu Pantalla de Bloqueo con sonido y vibración
+  aunque tengas el teléfono bloqueado o con la pantalla apagada.
+
+------------------------------------------------------------------------
+4. CÓMO INSTALARLA COMO APP (APK / ICONO) EN TU CELULAR
+------------------------------------------------------------------------
+- En iPhone (Safari):
+  1. Abre la página en Safari.
+  2. Toca el botón de Compartir (el icono cuadrado con una flecha hacia arriba).
+  3. Desliza hacia abajo y selecciona "Agregar a inicio".
+  4. ¡Listo! Te quedará con el icono de tu foto como una App nativa.
+
+- En Android (Google Chrome):
+  1. Abre la página en Chrome.
+  2. Toca los tres puntos (⋮) arriba a la derecha.
+  3. Selecciona "Instalar aplicación" o "Agregar a la pantalla principal".
+
+========================================================================
+                 ¡Muchos éxitos con Delarosa Nail Designer!
+========================================================================

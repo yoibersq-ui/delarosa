@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 60" fill="none" preserveAspectRatio="none">
+  <!-- Cinta negra fluida con curvas ondulantes -->
+  <path d="M0,25 C150,55 300,5 450,30 C600,55 750,10 900,35 C1050,60 1150,15 1200,30 L1200,60 L0,60 Z" fill="#141312"/>
+  <!-- Líneas de contorno superiores -->
+  <path d="M0,20 C150,50 300,0 450,25 C600,50 750,5 900,30 C1050,55 1150,10 1200,25" stroke="#c5a059" stroke-width="2.5" fill="none"/>
+  <path d="M0,15 C150,45 300,-5 450,20 C600,45 750,0 900,25 C1050,50 1150,5 1200,20" stroke="#141312" stroke-width="1.5" stroke-opacity="0.6" fill="none"/>
+</svg>

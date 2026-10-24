@@ -1,0 +1,93 @@
+========================================================================
+   ▲ GUÍA OFICIAL: CÓMO DESPLEGAR EN VERCEL PASO A PASO (100% GRATIS)
+========================================================================
+
+Vercel es una de las plataformas en la nube más rápidas y potentes del mundo.
+Tu proyecto ya está 100% configurado con el archivo especial "vercel.json" 
+para que funcione de forma ultrarrápida, con candado SSL (HTTPS) y URLs limpias.
+
+------------------------------------------------------------------------
+¿CÓMO QUEDARÁN TUS ENLACES EN VERCEL?
+------------------------------------------------------------------------
+1. ENLACE PÚBLICO PARA CLIENTAS:
+   👉 https://delarosa-nails.vercel.app/
+   (Aquí las clientas agendan sus citas, ven precios, fotos y menú VIP).
+
+2. ENLACE PRIVADO PARA JULIETH (ADMIN):
+   👉 https://delarosa-nails.vercel.app/admin
+   (Gracias a vercel.json, ya no necesita escribir ".html", solo entra a /admin 
+    y accede a su meta de $1.000.000 para el mueble, bloqueo de 2 a 4 PM y finanzas).
+
+------------------------------------------------------------------------
+PASO A PASO PARA DESPLEGAR EN VERCEL EN 2 MINUTOS:
+------------------------------------------------------------------------
+
+Vercel se conecta directamente con GitHub para desplegar en 1 solo clic. 
+No necesitas instalar nada en tu computador, todo se hace desde el navegador:
+
+PASO 1: SUBIR EL PROYECTO A GITHUB (En 1 minuto)
+------------------------------------------------
+1. Entra a tu cuenta en:
+   👉 https://github.com
+   (Si no tienes cuenta, créala gratis con tu correo en 30 segundos).
+
+2. Arriba a la derecha haz clic en el botón "+" y selecciona "New repository" (Nuevo repositorio).
+
+3. En "Repository name" pon:
+   delarosa-nails   (o el nombre que prefieras).
+
+4. Deja seleccionada la opción "Public" y haz clic en el botón verde:
+   "Create repository".
+
+5. En la pantalla que aparece, busca el enlace que dice:
+   "uploading an existing file" (subir un archivo existente).
+
+6. Arrastra TODOS los archivos y carpetas que están dentro de la carpeta:
+   "Delarosa_Nail_Designer_App" (en tu Escritorio)
+   hacia la pantalla de GitHub.
+   (Asegúrate de que se suban: index.html, admin.html, vercel.json, css, js, assets, etc.)
+
+7. Abajo haz clic en el botón verde "Commit changes" (Guardar cambios).
+
+------------------------------------------------------------------------
+PASO 2: CONECTAR Y DESPLEGAR EN VERCEL (En 30 segundos)
+------------------------------------------------------------------------
+1. Entra a:
+   👉 https://vercel.com
+
+2. Haz clic en "Sign Up" o "Log In" y selecciona:
+   "Continue with GitHub" (Iniciar sesión con tu cuenta de GitHub).
+
+3. En el panel principal de Vercel, haz clic en el botón:
+   "Add New..." -> "Project".
+
+4. Verás la lista de tus repositorios de GitHub. Al lado de "delarosa-nails", 
+   haz clic en el botón:
+   "Import" (Importar).
+
+5. En la pantalla de configuración:
+   - "Project Name": Puedes dejar delarosa-nails (o el que quieras).
+   - "Framework Preset": Déjalo en "Other" (Vercel lo detecta automáticamente).
+   - "Root Directory": Déjalo vacío (./).
+
+6. Haz clic en el botón azul:
+   🚀 "Deploy"
+
+7. ¡LISTO! En 15 segundos verás fuegos artificiales en la pantalla y Vercel 
+   te entregará tu enlace público oficial en internet.
+   Ejemplo: https://delarosa-nails.vercel.app
+
+------------------------------------------------------------------------
+¿CÓMO ACTUALIZAR TU PROYECTO EN VERCEL EN EL FUTURO?
+------------------------------------------------------------------------
+¡Es automático! Cada vez que cambies algo o subas un archivo nuevo a tu repositorio 
+de GitHub, Vercel detecta el cambio y actualiza tu página en internet 
+en 5 segundos sin que tengas que hacer nada.
+
+------------------------------------------------------------------------
+SINCRONIZACIÓN EN TIEMPO REAL:
+------------------------------------------------------------------------
+Recuerda que como ya integramos Firebase Realtime Database en la nube:
+- Si Julieth cambia un precio, bloquea una hora de 2 a 4 PM o agrega un servicio 
+  desde su iPhone en el link /admin, ¡se actualiza en vivo para todas las clientas 
+  en tiempo real sin tener que volver a desplegar!

@@ -1,0 +1,95 @@
+================================================================================
+💎 DELAROSA NAIL DESIGNER - GUÍA DE PRIVACIDAD Y CALENDARIOS (GMAIL / OUTLOOK)
+================================================================================
+
+¡Todo quedó configurado a la perfección antes de subir a Netlify!
+
+Aquí tienes la explicación exacta de cómo funciona el ocultamiento del panel 
+para clientas y el soporte doble para Gmail y Outlook:
+
+────────────────────────────────────────────────────────────────────────────────
+1. ¿CÓMO SE VE EL LINK PARA LAS CLIENTAS? (PANEL 100% OCULTO)
+────────────────────────────────────────────────────────────────────────────────
+Cuando compartas el enlace con tus clientas:
+👉 https://[tu-sitio].netlify.app/
+
+• La clienta entra normalmente a ver tus precios, tus técnicas y agendar su cita.
+• En la barra superior de la app, el botón "👑 Panel Manicurista" ESTÁ TOTALMENTE OCULTO.
+• Ellas solo ven "📅 Agendar Cita", tus fotos, tus redes de Instagram/Facebook y tu WhatsApp.
+• Ninguna clienta podrá curiosear tus ganancias, tus clientas ni tus horarios bloqueados.
+
+────────────────────────────────────────────────────────────────────────────────
+2. ¿CÓMO ENTRA JULIETH (LA MANICURISTA) A SU PANEL?
+────────────────────────────────────────────────────────────────────────────────
+Julieth tiene 3 formas súper fáciles y cómodas para entrar a su panel privado:
+
+MÉTODO A (El más cómodo - Enlace Directo):
+• Julieth entra a: https://[tu-sitio].netlify.app/admin.html
+• Al abrir ese link una sola vez en su celular o computador, la app reconoce 
+  que es Julieth y ACTIVA el botón "👑 Panel Manicurista" de forma permanente en su teléfono.
+• Puede guardar ese enlace en la pantalla de inicio de su celular como si fuera una app propia.
+
+MÉTODO B (Toque Secreto en el Logo):
+• Si Julieth está en la página principal, simplemente toca 3 VECES seguidas 
+  el logo o su foto de perfil de Delarosa en el encabezado.
+• La app desbloquea de inmediato la ventana para ingresar su contraseña maestra:
+  🔑 Contraseña: GabrielyEly25
+
+MÉTODO C (Candadito Discreto al final):
+• Al final de la página (en el pie de página), hay un candadito sutil:
+  🔒 Acceso Especialista.
+• Al tocarlo, se abre el acceso para Julieth.
+
+*Nota:* Si Julieth le presta el celular a una amiga y quiere volver a ocultar el botón,
+dentro de su panel hay un botón que dice: "👁️ Ocultar Panel". Al tocarlo, se oculta de nuevo.
+
+────────────────────────────────────────────────────────────────────────────────
+3. INTEGRACIÓN CON AMBOS CALENDARIOS: GMAIL Y OUTLOOK
+────────────────────────────────────────────────────────────────────────────────
+Como el regalo va para un correo que puede usar tanto Gmail como Outlook/Hotmail,
+la app ahora tiene compatibilidad nativa total con AMBOS:
+
+A. En el mensaje que llega a tu WhatsApp al agendar una clienta:
+   Al final del mensaje de WhatsApp aparecen DOS enlaces directos:
+   📅 Google / Gmail: [Toca para agendar]
+   📬 Outlook / Hotmail: [Toca para agendar]
+   Julieth solo tiene que tocar el que use (o ambos) y la cita se guarda 
+   automáticamente con sus alarmas sonoras.
+
+B. En la pantalla final de la clienta (Paso 6):
+   La clienta tiene 3 botones para elegir cómo guardar su cita:
+   • 📅 Google (Gmail)
+   • 📬 Outlook / Hotmail
+   • ⏰ iPhone / .ICS (Alarma para calendario de Apple o Android)
+
+C. En el comprobante por correo electrónico:
+   • 🔴 Gmail Web: Se abre directamente en Google en el navegador.
+   • 📬 Outlook Web: Se abre directamente en Hotmail / Outlook.
+   • ✉️ App de Correo: Se abre en la app nativa del celular.
+
+D. En el Panel de Citas de Julieth:
+   Al lado de cada cita registrada, Julieth tiene:
+   • Botón "📅 Google Cal"
+   • Botón "📬 Outlook"
+   • Botón "⏰ Alarma .ICS"
+   Así puede enviar cualquier cita a su calendario en 1 clic.
+
+────────────────────────────────────────────────────────────────────────────────
+4. BLOQUEO DE HORARIOS FLEXIBLE (DE 9 AM A 7 PM)
+────────────────────────────────────────────────────────────────────────────────
+• En el panel de Julieth puede bloquear rangos completos de horas con 1 clic:
+  - 🌅 Tarde: 2:00 a 4:00 PM (2 horas bloqueadas)
+  - ☕ Mañana: 9:00 a 11:00 AM (2 horas bloqueadas)
+  - 🍽️ Almuerzo: 12:00 a 2:00 PM (2 horas bloqueadas)
+  - ⛔ Todo el día
+• También puede ajustar el horario general de atención (de 9 AM a 7 PM o lo que desee)
+  desde la pestaña "⚙️ Estudio & Precios".
+
+────────────────────────────────────────────────────────────────────────────────
+5. LISTO PARA SUBIR A NETLIFY DROP
+────────────────────────────────────────────────────────────────────────────────
+Todos estos archivos ya están listos y actualizados en la carpeta:
+📁 C:\Users\LENOVO\Desktop\Delarosa_Nail_Designer_App
+
+Solo arrastra esa carpeta completa a https://app.netlify.com/drop ¡y listo!
+================================================================================

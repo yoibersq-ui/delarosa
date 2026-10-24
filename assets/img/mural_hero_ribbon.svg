@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 480" fill="none">
+  <!-- Cinta fluida orgánica negra inspirada en el mural de Julieth -->
+  <path d="M70,40 C140,20 220,60 250,130 C280,200 230,270 270,340 C310,410 390,400 370,460 C330,490 260,460 220,400 C180,340 210,270 170,210 C130,150 20,180 30,110 C40,60 50,45 70,40 Z" fill="#1c1917" fill-opacity="0.95"/>
+  
+  <!-- Líneas concéntricas doradas y hueso que contornean la cinta -->
+  <path d="M85,55 C150,38 215,75 240,135 C268,205 218,272 258,342 C295,405 365,402 355,445" stroke="#c5a059" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+  <path d="M100,70 C160,55 210,90 230,140 C256,210 206,274 246,344 C278,400 340,405 340,430" stroke="#f5eedf" stroke-width="1.8" stroke-opacity="0.8" stroke-linecap="round" fill="none"/>
+  
+  <!-- Ameba orgánica interna estilo mural -->
+  <path d="M90,260 C120,240 150,260 155,290 C160,320 130,350 100,355 C70,360 50,330 55,300 C60,270 75,265 90,260 Z" stroke="#1c1917" stroke-width="3" fill="#1c1917" fill-opacity="0.85"/>
+  <path d="M92,272 C115,258 138,272 142,295 C146,318 122,340 98,344 C76,348 62,324 66,302 C70,280 80,275 92,272 Z" stroke="#c5a059" stroke-width="1.5" fill="none"/>
+</svg>
