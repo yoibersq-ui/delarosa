@@ -539,35 +539,19 @@ select:focus {
 </head>
 <body class="bg-[#060609] text-slate-100 antialiased selection:bg-slate-800 selection:text-white" style="background-color: #060609 !important; color: #f1f5f9 !important; min-height: 100vh;">
 
-  <!-- Top Announcement Bar (Luxury Obsidian con Switcher de Visualización) -->
+    <!-- Top Announcement Bar (Luxury Minimalist) -->
   <div class="bg-[#07070a] text-slate-300 text-xs py-2 px-4 shadow-md border-b border-slate-800/80">
     <div class="max-w-6xl mx-auto flex items-center justify-between flex-wrap gap-2">
       <div class="flex items-center space-x-2 truncate">
-        <span class="text-white font-extrabold text-sm">✦</span>
-        <span class="truncate">Destaca tu personalidad con uñas únicas · 📍 <a href="https://www.google.com/maps/search/Apartad%C3%B3+Antioquia+Barrio+Laureles" target="_blank" class="underline hover:text-white link-maps font-bold text-slate-200 studio-location-text">Apartadó - Antioquia (Barrio Laureles)</a></span>
+        <svg class="w-3.5 h-3.5 text-slate-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+        <span class="truncate">Destaca tu personalidad con uñas únicas · <a href="https://www.google.com/maps/search/Apartad%C3%B3+Antioquia+Barrio+Laureles" target="_blank" class="underline hover:text-white link-maps font-bold text-slate-200 studio-location-text">Apartadó - Antioquia (Barrio Laureles)</a></span>
       </div>
       
-      <!-- Switcher de Vista: Computador vs Celular & Acciones Rápidas -->
-      <div class="flex items-center space-x-2 sm:space-x-3 text-[11px] flex-shrink-0">
-        <!-- Switcher Computador vs Celular -->
-        <div class="flex items-center bg-[#12121a] p-0.5 rounded-full border border-slate-700/80 shadow-xs">
-          <button type="button" id="deviceBtnDesktop" onclick="setDeviceView('desktop')" class="px-2.5 py-1 rounded-full btn-chrome text-stone-950 font-black text-[10px] flex items-center space-x-1 shadow-sm transition-all" title="Ver en pantalla completa de computador">
-            <span>🖥️ Computador</span>
-          </button>
-          <button type="button" id="deviceBtnMobile" onclick="setDeviceView('mobile')" class="px-2.5 py-1 rounded-full text-slate-300 hover:text-white font-bold text-[10px] flex items-center space-x-1 transition-all" title="Ver cómo se ve en un celular iPhone / Android">
-            <span>📱 Celular</span>
-          </button>
-        </div>
-
-        <span class="text-slate-600 hidden sm:inline">•</span>
-
-        <button type="button" class="open-pricelist-btn text-slate-200 hover:text-white font-bold underline flex items-center space-x-1">
-          <span>📜 Carta</span>
-        </button>
-        <span class="hidden sm:inline">•</span>
-        <button type="button" onclick="installPWA()" class="pwa-install-btn hidden sm:flex text-slate-200 font-bold hover:text-white hover:underline items-center space-x-1">
-          <span>📲 Instalar App (APK)</span>
-        </button>
+      <div class="flex items-center space-x-3 text-xs flex-shrink-0">
+        <a href="https://wa.me/573226376819" target="_blank" class="link-whatsapp text-emerald-400 hover:text-emerald-300 font-semibold flex items-center space-x-1.5 transition-colors" title="WhatsApp Oficial">
+          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+          <span>+57 322 637 6819</span>
+        </a>
       </div>
     </div>
   </div>
@@ -576,15 +560,15 @@ select:focus {
   <header class="sticky top-0 z-30 glass-panel border-b border-slate-800 shadow-xl">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
       
-      <!-- Brand & Profile Avatar (Vista Pública Limpia para Clientas) -->
+      <!-- Brand & Profile Avatar -->
       <div class="flex items-center space-x-3 sm:space-x-3.5">
         
-        <!-- Logo Oficial Cromado con Definición Ultra Nítida (Sin desenfoque) -->
+        <!-- Logo Oficial Cromado con Definición Ultra Nítida -->
         <div class="logo-chrome-badge w-12 h-12 flex-shrink-0 cursor-pointer" onclick="switchView('client')" title="Delarosa Nail Designer Oficial">
           <img src="assets/img/delarosa_logo_clean.png" onerror="if(window.DELAROSA_LOGO_B64){this.onerror=null;this.src=window.DELAROSA_LOGO_B64;}" alt="Delarosa Nail Designer Logo" class="w-full h-full object-contain rounded-full">
         </div>
 
-        <!-- Avatar Artista Julieth (Clic secreto 3 veces para acceso especialista) -->
+        <!-- Avatar Artista Julieth -->
         <div class="relative flex-shrink-0 cursor-pointer" onclick="handleSecretLogoClick(event)" title="Delarosa Nail Designer">
           <div class="w-11 h-11 rounded-2xl overflow-hidden border-2 border-slate-700 shadow-md bg-[#0e0e15]">
             <img src="assets/img/delarosa_profile.jpg" onerror="if(window.DELAROSA_PROFILE_B64){this.onerror=null;this.src=window.DELAROSA_PROFILE_B64;}" alt="Julieth De la Rosa" class="profile-avatar-img w-full h-full object-cover object-top">
@@ -597,51 +581,63 @@ select:focus {
             <h1 class="font-black text-base sm:text-lg text-white leading-tight studio-name-text font-serif-luxury tracking-tight cursor-pointer select-none" onclick="handleSecretLogoClick(event)">
               <span class="text-chrome-gradient">Delarosa</span> <span class="italic font-normal text-slate-300">Nail Designer</span>
             </h1>
-            <span class="text-emerald-400 font-bold text-xs" title="Artista Verificada">✔</span>
+            <svg class="w-4 h-4 text-emerald-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" title="Artista Verificada"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
           </div>
           
           <p class="text-[11px] text-slate-400 font-semibold flex items-center space-x-2 mt-0.5">
             <span class="text-slate-200 font-bold designer-name-text">Julieth De la Rosa</span>
             <span>·</span>
-            <!-- Redes Clicables en Header -->
-            <a href="https://instagram.com/delarosaa_02" target="_blank" class="link-instagram text-slate-300 hover:text-white hover:underline flex items-center space-x-0.5" title="Ver Instagram Oficial">
-              <span>📷</span><span class="studio-instagram-text font-bold">@delarosaa_02</span>
+            <a href="https://instagram.com/delarosaa_02" target="_blank" class="link-instagram text-slate-300 hover:text-white hover:underline flex items-center space-x-1" title="Ver Instagram Oficial">
+              <svg class="w-3 h-3 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke-width="2"></rect><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" stroke-width="2"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke-width="2"></line></svg>
+              <span class="studio-instagram-text font-bold">@delarosaa_02</span>
             </a>
           </p>
         </div>
 
       </div>
 
-      <!-- Redes Sociales Rápidas & Switcher de Modo -->
+      <!-- Navegación Principal: Carta de Precios, Agendar Cita y Panel Admin -->
       <div class="flex items-center space-x-2 sm:space-x-3">
         <!-- Iconos directos a redes -->
-        <div class="hidden md:flex items-center space-x-1 text-sm pr-2 border-r border-slate-800">
-          <a href="https://instagram.com/delarosaa_02" target="_blank" class="link-instagram p-2 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 transition-all" title="Ver Instagram Oficial">
-            📷
+        <div class="hidden lg:flex items-center space-x-1 text-sm pr-2 border-r border-slate-800">
+          <a href="https://instagram.com/delarosaa_02" target="_blank" class="link-instagram p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/60 transition-all" title="Instagram Oficial">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke-width="2"></rect><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" stroke-width="2"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke-width="2"></line></svg>
           </a>
-          <a href="https://www.facebook.com/search/top?q=Julieth%20De%20la%20Rosa" target="_blank" class="link-facebook p-2 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 transition-all" title="Ver Facebook Oficial">
-            👤
+          <a href="https://www.facebook.com/search/top?q=Julieth%20De%20la%20Rosa" target="_blank" class="link-facebook p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/60 transition-all" title="Facebook Oficial">
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
           </a>
           <a href="https://wa.me/573226376819" target="_blank" class="link-whatsapp p-2 rounded-xl text-emerald-400 hover:bg-emerald-950/40 transition-all" title="WhatsApp Directo">
-            💬
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
           </a>
         </div>
 
-        <!-- Botones de Navegación (El botón de Manicurista se oculta a clientas por defecto) -->
-        <nav class="flex items-center space-x-1 bg-[#12121b] p-1 rounded-2xl border border-slate-700/80">
-          <button id="navClientBtn" class="px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-extrabold btn-chrome text-stone-950 transition-all flex items-center space-x-1.5 shadow-md">
-            <span>📅 Agendar Cita</span>
+        <!-- Botones de Navegación Fluidos y Profesionales -->
+        <nav class="flex items-center space-x-1 sm:space-x-1.5 bg-[#12121b] p-1 rounded-2xl border border-slate-700/80 shadow-md">
+          <!-- 1. Carta Oficial de Precios (Ubicación Destacada y Accesible) -->
+          <button type="button" class="open-pricelist-btn px-2.5 sm:px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-300 hover:text-white hover:bg-slate-800/80 transition-all flex items-center space-x-1.5" title="Ver Carta Oficial de Precios">
+            <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+            <span class="hidden sm:inline">Carta de Precios</span>
+            <span class="inline sm:hidden">Carta</span>
           </button>
-          <button id="navAdminBtn" class="hidden px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-bold text-slate-300 hover:text-white transition-all flex items-center space-x-1.5">
-            <span>👑 Panel Manicurista</span>
+
+          <!-- 2. Agendar Cita -->
+          <button id="navClientBtn" onclick="switchView('client')" class="px-2.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-extrabold btn-chrome text-stone-950 transition-all flex items-center space-x-1.5 shadow-sm" title="Agendar Cita">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+            <span class="hidden sm:inline">Agendar Cita</span>
+            <span class="inline sm:hidden">Agendar</span>
+          </button>
+
+          <!-- 3. Panel Manicurista (Siempre Visible y Accesible) -->
+          <button id="navAdminBtn" onclick="handleAdminAccess()" class="px-2.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-bold text-slate-300 hover:text-white hover:bg-slate-800/80 transition-all flex items-center space-x-1.5 border border-slate-700/50 hover:border-amber-400/60" title="Acceso al Panel de Manicurista">
+            <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 24 24"><path d="M5 16L3 5l5.5 5L12 4l3.5 6L21 5l-2 11H5zm14 3c0 .6-.4 1-1 1H6c-.6 0-1-.4-1-1v-1h14v1z"></path></svg>
+            <span class="hidden sm:inline">Panel Manicurista</span>
+            <span class="inline sm:hidden">Admin</span>
           </button>
         </nav>
       </div>
 
     </div>
   </header>
-
-  <!-- Envoltorio para Switcher de Visualización (Modo PC / Modo Celular) -->
 
   <!-- Contenedor Principal -->
   <main class="max-w-6xl mx-auto px-4 sm:px-6 py-6 pb-28 md:pb-12" id="bookingFormTop">
@@ -678,11 +674,12 @@ select:focus {
                 <img src="assets/img/delarosa_logo_clean.png" onerror="if(window.DELAROSA_LOGO_B64){this.onerror=null;this.src=window.DELAROSA_LOGO_B64;}" alt="Logo Delarosa" class="w-full h-full object-contain rounded-full">
               </div>
               <div class="mural-pill-badge">
-                <span class="text-white font-bold">✦</span>
+                <svg class="w-3.5 h-3.5 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
                 <span class="studio-location-text text-slate-200">Apartadó - Antioquia (Barrio Laureles)</span>
               </div>
               <div class="mural-pill-badge-black">
-                <span>🎨 Studio Art Edition</span>
+                <svg class="w-3.5 h-3.5 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
+                <span>Studio Art Edition</span>
               </div>
             </div>
             
@@ -691,36 +688,41 @@ select:focus {
             </h2>
             
             <p class="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-xl">
-              <em class="studio-slogan-text font-serif-luxury text-white font-semibold">"Destaca tu personalidad con uñas únicas 🤍"</em>. Especialista en <strong>Builder Gel, Polygel con extensiones, Soft Gel (Press on), Esmaltado Semipermanente y Manicura Rusa Profunda</strong>.
+              <em class="studio-slogan-text font-serif-luxury text-white font-semibold">"Destaca tu personalidad con uñas únicas"</em>. Especialista en <strong>Builder Gel, Polygel con extensiones, Soft Gel (Press on), Esmaltado Semipermanente y Manicura Rusa Profunda</strong>.
             </p>
 
-            <!-- Redes Sociales Clicables Destacadas con Estilo Boutique -->
+            <!-- Redes Sociales Clicables con Iconos Profesionales SVG -->
             <div class="flex flex-wrap items-center justify-center md:justify-start gap-2 pt-1 text-xs">
               <a href="https://instagram.com/delarosaa_02" target="_blank" class="link-instagram px-3.5 py-1.5 rounded-full bg-[#14141e] hover:bg-[#1a1a28] text-slate-200 font-bold border border-slate-700/80 shadow-xs flex items-center space-x-1.5 transition-all">
-                <span>📷</span><span>Instagram: <strong class="studio-instagram-text text-white">@delarosaa_02</strong></span>
+                <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke-width="2"></rect><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" stroke-width="2"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke-width="2"></line></svg>
+                <span>Instagram: <strong class="studio-instagram-text text-white">@delarosaa_02</strong></span>
               </a>
               <a href="https://www.facebook.com/search/top?q=Julieth%20De%20la%20Rosa" target="_blank" class="link-facebook px-3.5 py-1.5 rounded-full bg-[#14141e] hover:bg-[#1a1a28] text-slate-200 font-bold border border-slate-700/80 shadow-xs flex items-center space-x-1.5 transition-all">
-                <span>👤</span><span>Facebook: <strong class="text-white">Julieth De la Rosa</strong></span>
+                <svg class="w-3.5 h-3.5 text-slate-400 fill-current" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                <span>Facebook: <strong class="text-white">Julieth De la Rosa</strong></span>
               </a>
               <a href="https://wa.me/573226376819" target="_blank" class="link-whatsapp px-3.5 py-1.5 rounded-full bg-emerald-950/60 hover:bg-emerald-900/60 text-emerald-200 font-bold border border-emerald-600/50 shadow-xs flex items-center space-x-1.5 transition-all">
-                <span>💬</span><span>WhatsApp: <strong class="studio-phone-text text-emerald-300">+57 322 637 6819</strong></span>
+                <svg class="w-3.5 h-3.5 text-emerald-400 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+                <span>WhatsApp: <strong class="studio-phone-text text-emerald-300">+57 322 637 6819</strong></span>
               </a>
             </div>
 
-            <!-- Botones de Acción para Clientas -->
-            <div class="flex flex-wrap items-center justify-center md:justify-start gap-3 pt-2">
-              <button type="button" class="open-pricelist-btn px-6 py-3 rounded-2xl btn-chrome text-stone-950 font-black text-xs shadow-lg flex items-center space-x-2 transition-all hover:scale-[1.02]">
-                <span>📜 Ver Lista Oficial de Precios</span>
+            <!-- Botones de Acción para Clientas (100% Responsivos) -->
+            <div class="flex flex-wrap items-center justify-center md:justify-start gap-2.5 sm:gap-3.5 pt-2">
+              <button type="button" class="open-pricelist-btn w-full sm:w-auto px-6 sm:px-8 py-3.5 rounded-2xl btn-chrome text-stone-950 font-black text-xs sm:text-sm shadow-xl flex items-center justify-center space-x-2 transition-all hover:scale-[1.02]">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                <span>Ver Lista Oficial de Precios</span>
               </button>
-              
-              <button type="button" onclick="installPWA()" class="pwa-install-btn px-6 py-3 rounded-2xl btn-luxury text-white font-extrabold text-xs shadow-sm flex items-center space-x-2 transition-all hover:scale-[1.02]">
-                <span>📲 Instalar App en Celular</span>
-              </button>
+              <a href="#bookingFormTop" class="w-full sm:w-auto px-6 sm:px-8 py-3.5 rounded-2xl btn-luxury text-white font-extrabold text-xs sm:text-sm shadow-md flex items-center justify-center space-x-2 transition-all hover:scale-[1.02]">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                <span>Reservar Cita Ahora</span>
+              </a>
             </div>
           </div>
 
         </div>
       </div>
+
 
       <!-- Stepper / Barra de Progreso Elegante en Obsidian & Plata -->
       <div class="mb-8 max-w-3xl mx-auto px-2">
