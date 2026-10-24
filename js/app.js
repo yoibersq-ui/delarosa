@@ -1,4 +1,4 @@
-﻿/**
+/**
  * app.js - Delarosa Nail Designer
  * Sistema integral de agendamiento, panel protegido con contraseña, cálculo de horas inteligente,
  * edición inmediata de redes sociales/fotos y sistema de alarmas sonoras (24h, 2h, 1h, 5min).
@@ -2745,33 +2745,6 @@ END:VCALENDAR`;
   showToast('¡Alarma generada! Al abrirse en tu iPhone/Android se activarán los 4 avisos con sonido (24h, 2h, 1h, 10min).', 'success');
 };
 
-// Switcher de Visualización: Computador vs Modo Celular
-window.setDeviceView = function(viewMode) {
-  const wrapper = document.getElementById('appDeviceWrapper');
-  const btnDesktop = document.getElementById('deviceBtnDesktop');
-  const btnMobile = document.getElementById('deviceBtnMobile');
-
-  if (viewMode === 'mobile') {
-    if (wrapper) wrapper.classList.add('mobile-frame-view');
-    if (btnMobile) {
-      btnMobile.className = 'px-2.5 py-1 rounded-full btn-chrome text-stone-950 font-black text-[10px] flex items-center space-x-1 shadow-sm transition-all';
-    }
-    if (btnDesktop) {
-      btnDesktop.className = 'px-2.5 py-1 rounded-full text-slate-300 hover:text-white font-bold text-[10px] flex items-center space-x-1 transition-all';
-    }
-    showToast('📱 Modo Celular activado: Visualizando en marco de smartphone.', 'info');
-  } else {
-    if (wrapper) wrapper.classList.remove('mobile-frame-view');
-    if (btnDesktop) {
-      btnDesktop.className = 'px-2.5 py-1 rounded-full btn-chrome text-stone-950 font-black text-[10px] flex items-center space-x-1 shadow-sm transition-all';
-    }
-    if (btnMobile) {
-      btnMobile.className = 'px-2.5 py-1 rounded-full text-slate-300 hover:text-white font-bold text-[10px] flex items-center space-x-1 transition-all';
-    }
-    showToast('🖥️ Modo Computador activado: Visualización en pantalla completa.', 'info');
-  }
-};
-
 // Generador de Enlace a Google Calendar (1 Clic, sin descargar archivos)
 window.generateGoogleCalendarLink = function(apt) {
   if (!apt) return '#';
@@ -4015,39 +3988,14 @@ function exportAppointmentsCSV() {
   showToast('Archivo CSV exportado exitosamente.', 'success');
 }
 
-/* ========================================================
-   PROGRESSIVE WEB APP (PWA) / APK
-   ======================================================== */
-
-let deferredInstallPrompt = null;
-
 function initPWA() {
+  // Service Worker estándar para caché optimizada
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('./sw.js')
       .then(() => console.log('Service Worker registrado correctamente'))
       .catch(err => console.log('SW registration error:', err));
   }
-
-  window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredInstallPrompt = e;
-    document.querySelectorAll('.pwa-install-btn').forEach(btn => btn.classList.remove('hidden'));
-  });
 }
-
-window.installPWA = function() {
-  if (deferredInstallPrompt) {
-    deferredInstallPrompt.prompt();
-    deferredInstallPrompt.userChoice.then((choiceResult) => {
-      if (choiceResult.outcome === 'accepted') {
-        showToast('¡App agregada a la pantalla de tu celular!', 'success');
-      }
-      deferredInstallPrompt = null;
-    });
-  } else {
-    document.getElementById('pwaInstallModal').classList.remove('hidden');
-  }
-};
 
 /* ========================================================
    NOTIFICACIONES TOAST & UTILIDADES

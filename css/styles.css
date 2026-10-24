@@ -50,35 +50,50 @@ body {
 }
 
 /* ========================================================
-   SWITCHER DE VISTA: COMPUTADOR VS MODO CELULAR
+   DISEÑO 100% RESPONSIVO & FLUIDO (TODOS LOS DISPOSITIVOS)
    ======================================================== */
 
-.mobile-frame-view {
-  max-width: 440px !important;
-  margin: 1.5rem auto 5rem auto !important;
-  border: 10px solid #1a1a24 !important;
-  border-radius: 46px !important;
-  box-shadow: 0 25px 80px -15px rgba(0, 0, 0, 0.85), 0 0 0 2px rgba(226, 232, 240, 0.3) !important;
-  background: #0d0d13 !important;
-  position: relative !important;
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
-  overflow: hidden !important;
+html, body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-.mobile-frame-view::before {
-  content: '';
-  display: block;
-  width: 130px;
-  height: 20px;
-  background: #14141e;
-  margin: 0 auto 10px auto;
-  border-bottom-left-radius: 14px;
-  border-bottom-right-radius: 14px;
-  border: 1px solid rgba(226, 232, 240, 0.15);
-  border-top: none;
-  position: sticky;
-  top: 0;
-  z-index: 50;
+* {
+  box-sizing: border-box;
+}
+
+img, svg, video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Modales con altura dinámica en móviles */
+.modal-responsive {
+  max-height: 90vh;
+  max-height: 90dvh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Pestañas con desplazamiento táctil suave sin barra visible */
+.tabs-scroll-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.tabs-scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Altura táctil ergonómica para móviles */
+@media (max-width: 640px) {
+  button, input, select, .selectable-card {
+    min-height: 44px;
+  }
 }
 
 /* ========================================================
