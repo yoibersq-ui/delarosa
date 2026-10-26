@@ -25,8 +25,8 @@ const SAMPLE_CONFIG = {
   paymentMethods: "Nequi / Daviplata: 322 637 6819 | Bancolombia Ahorros (A nombre de Julieth De la Rosa)",
 
   // Conexión Supabase (PostgreSQL en tiempo real)
-  supabaseUrl: "",
-  supabaseAnonKey: "",
+  supabaseUrl: "https://lpfkwfdxwtnmgzdcxebo.supabase.co",
+  supabaseAnonKey: "sb_publishable_1K9Jyc6mFVB7MBTgUCtpFw_BcrrY0pp",
   
   // Fotos personalizadas (por defecto usan las imágenes de assets)
   customProfilePhoto: null,

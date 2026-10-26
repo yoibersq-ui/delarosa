@@ -1,4 +1,4 @@
-/**
+﻿/**
  * supabase-sync.js - Integración Oficial con Supabase para Delarosa Nail Designer
  * Sincronización en la Nube y en Tiempo Real (PostgreSQL + Realtime WebSockets)
  * Conecta celulares, computadores y el panel de administración al instante.
@@ -19,7 +19,7 @@ const SupabaseSync = {
     if (!u && typeof window.SAMPLE_CONFIG !== 'undefined' && window.SAMPLE_CONFIG.supabaseUrl) {
       u = window.SAMPLE_CONFIG.supabaseUrl;
     }
-    return (u || '').trim();
+    return (u || this.DEFAULT_URL || '').trim();
   },
 
   getKey() {
@@ -30,7 +30,7 @@ const SupabaseSync = {
     if (!k && typeof window.SAMPLE_CONFIG !== 'undefined' && window.SAMPLE_CONFIG.supabaseAnonKey) {
       k = window.SAMPLE_CONFIG.supabaseAnonKey;
     }
-    return (k || '').trim();
+    return (k || this.DEFAULT_KEY || '').trim();
   },
 
   setCredentials(url, key) {
