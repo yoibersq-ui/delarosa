@@ -66,14 +66,29 @@ const DB = {
   async getAllAppointments() {
     const db = await openDB();
     return new Promise((resolve, reject) => {
-      const tx = db.transaction('appointments', 'readonly');
+      const tx = db.transaction('appointments', 'readwrite');
       const store = tx.objectStore('appointments');
       const request = store.getAll();
 
       request.onsuccess = () => {
-        const list = request.result || [];
-        list.sort((a, b) => new Date(`${b.date}T${b.time || '00:00'}`) - new Date(`${a.date}T${a.time || '00:00'}`));
-        resolve(list);
+        const rawList = request.result || [];
+        const cleanList = [];
+        
+        // Eliminar permanentemente citas falsas o de prueba iniciales
+        rawList.forEach(apt => {
+          if (!apt) return;
+          const isDemo = apt.clientName === 'Valentina Gómez' || 
+                         apt.clientName === 'Carlos Méndez' || 
+                         String(apt.id || '').startsWith('CITA-20261022-');
+          if (isDemo) {
+            try { store.delete(apt.id); } catch(e) {}
+          } else {
+            cleanList.push(apt);
+          }
+        });
+
+        cleanList.sort((a, b) => new Date(`${b.date}T${b.time || '00:00'}`) - new Date(`${a.date}T${a.time || '00:00'}`));
+        resolve(cleanList);
       };
       request.onerror = () => reject(request.error);
     });

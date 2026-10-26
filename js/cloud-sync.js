@@ -1,29 +1,33 @@
 /**
  * cloud-sync.js - Sincronizador en la Nube en Tiempo Real para Delarosa Nail Designer
- * Permite que los cambios de precios, servicios nuevos y horarios bloqueados hechos
- * por Julieth en su panel de administración se sincronicen de inmediato con los celulares
- * de todas las clientas.
+ * Permite que los cambios de citas, cancelaciones, precios, servicios nuevos y horarios bloqueados
+ * se sincronicen de inmediato entre el computador, el iPhone y cualquier dispositivo.
  */
 
 const CloudSync = {
   STORAGE_KEY_URL: 'delarosa_cloud_db_url',
   STORAGE_KEY_LAST_SYNC: 'delarosa_cloud_last_sync',
   pollingIntervalId: null,
+  isSyncing: false,
 
-  // Obtener URL de la base de datos en la nube (ej. Firebase Realtime Database)
+  // Obtener URL de la base de datos (por defecto la API Serverless /api/sync en Vercel)
   getDatabaseUrl() {
     let url = localStorage.getItem(this.STORAGE_KEY_URL);
     if (!url && typeof AppState !== 'undefined' && AppState.config && AppState.config.cloudDbUrl) {
       url = AppState.config.cloudDbUrl;
     }
-    return (url || '').trim();
+    // Si no hay ninguna URL configurada, usar el endpoint integrado de Vercel
+    if (!url || !url.trim()) {
+      url = '/api/sync';
+    }
+    return url.trim();
   },
 
-  // Guardar URL normalizada (si es Firebase, asegura que termine en .json)
+  // Guardar URL personalizada (ej. Firebase Realtime Database)
   setDatabaseUrl(url) {
-    if (!url) {
+    if (!url || !url.trim()) {
       localStorage.removeItem(this.STORAGE_KEY_URL);
-      if (typeof AppState !== 'undefined' && AppState.config) AppState.config.cloudDbUrl = '';
+      if (typeof AppState !== 'undefined' && AppState.config) AppState.config.cloudDbUrl = '/api/sync';
       return;
     }
     url = url.trim().replace(/\/$/, '');
@@ -37,24 +41,30 @@ const CloudSync = {
   },
 
   isConfigured() {
-    const url = this.getDatabaseUrl();
-    return !!(url && (url.startsWith('https://') || url.startsWith('http://')));
+    return true; // Siempre activo gracias a la API integrada
   },
 
-  // Enviar catálogo completo y bloqueos a la nube (llamado tras guardar en Admin)
+  // Subir citas, catálogo y bloqueos a la nube
   async pushToCloud(silent = false) {
+    if (this.isSyncing) return false;
     const url = this.getDatabaseUrl();
-    if (!url) {
-      this.updateBadge('offline', 'Modo Local (Sin Nube)');
-      return false;
-    }
+    if (!url) return false;
 
+    this.isSyncing = true;
     try {
       if (!silent) this.updateBadge('syncing', 'Sincronizando...');
 
+      // Filtrar citas falsas o demo
+      const cleanAppointments = (AppState.appointments || []).filter(a =>
+        a && a.clientName !== 'Valentina Gómez' && 
+        a.clientName !== 'Carlos Méndez' && 
+        !String(a.id || '').startsWith('CITA-20261022-')
+      );
+
       const payload = {
         updatedAt: new Date().toISOString(),
-        updatedBy: 'Julieth De la Rosa (Admin)',
+        updatedBy: AppState.isAdminAuthenticated ? 'Julieth De la Rosa (Admin)' : 'Clienta Web',
+        appointments: cleanAppointments,
         services: AppState.services || [],
         addons: AppState.addons || [],
         designLevels: AppState.designLevels || [],
@@ -73,99 +83,142 @@ const CloudSync = {
         }
       };
 
+      const isApiRoute = url.startsWith('/api/') || url.includes('/api/sync');
+      const method = isApiRoute ? 'POST' : 'PUT';
+
       const res = await fetch(url, {
-        method: 'PUT',
+        method: method,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
       });
 
       if (res.ok) {
         localStorage.setItem(this.STORAGE_KEY_LAST_SYNC, new Date().toISOString());
-        this.updateBadge('online', '🟢 Nube Actualizada en Vivo');
+        this.updateBadge('online', 'En Vivo (Sincronizado)');
         if (!silent && typeof showToast === 'function') {
-          showToast('☁️ Catálogo y horarios sincronizados en la nube.', 'success');
+          showToast('Nube actualizada correctamente.', 'success');
         }
         return true;
       } else {
-        this.updateBadge('error', '⚠️ Error al subir a la nube');
+        this.updateBadge('offline', 'Guardado Local');
         return false;
       }
     } catch (err) {
       console.warn('Error en CloudSync.pushToCloud:', err);
-      this.updateBadge('error', '⚠️ Sin conexión a la nube');
+      this.updateBadge('offline', 'Modo Local');
       return false;
+    } finally {
+      this.isSyncing = false;
     }
   },
 
-  // Descargar cambios más recientes de la nube (llamado al cargar en clientas y admin)
+  // Descargar cambios más recientes de la nube (citas nuevas, citas eliminadas, bloqueos)
   async pullFromCloud(silent = true) {
     const url = this.getDatabaseUrl();
-    if (!url) {
-      this.updateBadge('offline', 'Modo Local');
-      return false;
-    }
+    if (!url) return false;
 
     try {
-      if (!silent) this.updateBadge('syncing', 'Descargando...');
+      if (!silent) this.updateBadge('syncing', 'Comprobando...');
 
-      // Agregar timestamp anticaché
-      const queryUrl = url + (url.includes('?') ? '&' : '?') + '_nocache=' + Date.now();
+      const queryUrl = url + (url.includes('?') ? '&' : '?') + '_t=' + Date.now();
       const res = await fetch(queryUrl, {
         headers: { 'Accept': 'application/json' }
       });
 
       if (!res.ok) {
-        this.updateBadge('error', '⚠️ Error de descarga');
         return false;
       }
 
-      const cloudData = await res.json();
+      let cloudData = await res.json();
+      if (cloudData && cloudData.data && typeof cloudData.data === 'object') {
+        cloudData = cloudData.data;
+      }
       if (!cloudData || typeof cloudData !== 'object') {
-        this.updateBadge('online', '🟢 Nube vacía / lista');
         return false;
       }
 
       let hasUpdated = false;
 
-      // 1. Sincronizar Catálogo de Servicios y Precios
+      // 1. Sincronizar Citas (tanto creadas como eliminadas en otros dispositivos)
+      if (Array.isArray(cloudData.appointments)) {
+        const cleanCloudApts = cloudData.appointments.filter(a =>
+          a && a.clientName !== 'Valentina Gómez' && 
+          a.clientName !== 'Carlos Méndez' && 
+          !String(a.id || '').startsWith('CITA-20261022-')
+        );
+
+        const currentIds = (AppState.appointments || []).map(a => `${a.id}_${a.status}_${a.date}_${a.time}`).sort().join('|');
+        const incomingIds = cleanCloudApts.map(a => `${a.id}_${a.status}_${a.date}_${a.time}`).sort().join('|');
+
+        if (currentIds !== incomingIds) {
+          AppState.appointments = cleanCloudApts;
+
+          // Sincronizar con IndexedDB local
+          if (typeof DB !== 'undefined') {
+            try {
+              const db = await openDB();
+              const tx = db.transaction('appointments', 'readwrite');
+              const store = tx.objectStore('appointments');
+              store.clear();
+              cleanCloudApts.forEach(apt => store.put(apt));
+            } catch (e) {
+              console.warn('Error actualizando IndexedDB en pull:', e);
+            }
+          }
+
+          hasUpdated = true;
+          if (typeof renderAdminAppointments === 'function') renderAdminAppointments();
+          if (typeof updateAdminMetrics === 'function') updateAdminMetrics();
+          if (typeof renderTimeSlots === 'function') renderTimeSlots();
+        }
+      }
+
+      // 2. Sincronizar Catálogo de Servicios y Precios
       if (Array.isArray(cloudData.services) && cloudData.services.length > 0) {
-        AppState.services = cloudData.services;
-        if (typeof DB !== 'undefined') {
-          for (const s of cloudData.services) {
-            await DB.saveService(s);
+        if (JSON.stringify(AppState.services) !== JSON.stringify(cloudData.services)) {
+          AppState.services = cloudData.services;
+          if (typeof DB !== 'undefined') {
+            for (const s of cloudData.services) {
+              await DB.saveService(s);
+            }
           }
+          hasUpdated = true;
         }
-        hasUpdated = true;
       }
 
-      // 2. Sincronizar Horarios Bloqueados (ej. 2 a 4 PM)
+      // 3. Sincronizar Horarios Bloqueados
       if (Array.isArray(cloudData.blockedSlots)) {
-        AppState.blockedSlots = cloudData.blockedSlots;
-        if (typeof DB !== 'undefined') {
-          for (const b of cloudData.blockedSlots) {
-            await DB.saveBlockedSlot(b);
+        if (JSON.stringify(AppState.blockedSlots) !== JSON.stringify(cloudData.blockedSlots)) {
+          AppState.blockedSlots = cloudData.blockedSlots;
+          if (typeof DB !== 'undefined') {
+            try {
+              const db = await openDB();
+              const tx = db.transaction('blockedSlots', 'readwrite');
+              const store = tx.objectStore('blockedSlots');
+              store.clear();
+              cloudData.blockedSlots.forEach(b => store.put(b));
+            } catch (e) {}
           }
+          hasUpdated = true;
         }
-        hasUpdated = true;
       }
 
-      // 3. Sincronizar Adicionales y Diseños
+      // 4. Sincronizar Adicionales y Diseños
       if (Array.isArray(cloudData.addons)) AppState.addons = cloudData.addons;
       if (Array.isArray(cloudData.designLevels)) AppState.designLevels = cloudData.designLevels;
 
-      // 4. Sincronizar Horario de Trabajo (9:00 a 19:00)
+      // 5. Horario de Trabajo
       if (cloudData.workingHours && AppState.config) {
         if (cloudData.workingHours.start) AppState.config.workStart = cloudData.workingHours.start;
         if (cloudData.workingHours.end) AppState.config.workEnd = cloudData.workingHours.end;
-        hasUpdated = true;
       }
 
-      // 5. Opciones de Ambiente
+      // 6. Opciones de Ambiente
       if (cloudData.ambienceOptions) {
         AppState.ambienceOptions = cloudData.ambienceOptions;
       }
 
-      // 6. Sincronizar Finanzas y Meta del Mueble ($1.000.000 COP)
+      // 7. Finanzas
       if (cloudData.finances && cloudData.finances.goal) {
         AppState.finances = cloudData.finances;
         if (typeof DB !== 'undefined') DB.setSetting('studioFinances', cloudData.finances);
@@ -173,16 +226,14 @@ const CloudSync = {
       }
 
       if (hasUpdated) {
-        if (typeof saveToLocalStorage === 'function') saveToLocalStorage();
         if (typeof renderServicesCatalog === 'function') renderServicesCatalog();
-        if (typeof renderTimeSlotsForSelectedDate === 'function') renderTimeSlotsForSelectedDate();
         if (typeof renderAdminServicesTable === 'function') renderAdminServicesTable();
         if (typeof renderAdminBlockedSlotsTable === 'function') renderAdminBlockedSlotsTable();
         if (typeof updateBrandingText === 'function') updateBrandingText();
       }
 
       localStorage.setItem(this.STORAGE_KEY_LAST_SYNC, new Date().toISOString());
-      this.updateBadge('online', '🟢 Nube Sincronizada');
+      this.updateBadge('online', 'En Vivo (Sincronizado)');
       return true;
     } catch (err) {
       console.warn('Error en CloudSync.pullFromCloud:', err);
@@ -199,13 +250,11 @@ const CloudSync = {
     }
 
     try {
-      // 1. Probar lectura
       const readRes = await fetch(testUrl + '?t=' + Date.now());
       if (!readRes.ok) {
-        return { success: false, message: `El servidor respondió con error ${readRes.status}. Verifica los permisos de lectura.` };
+        return { success: false, message: `El servidor respondió con código ${readRes.status}.` };
       }
 
-      // 2. Probar escritura de prueba
       const pingPayload = {
         connectionTest: true,
         checkedAt: new Date().toISOString(),
@@ -213,70 +262,20 @@ const CloudSync = {
       };
 
       const writeRes = await fetch(testUrl, {
-        method: 'PUT',
+        method: testUrl.startsWith('/api/') ? 'POST' : 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(pingPayload)
       });
 
       if (!writeRes.ok) {
-        return { success: false, message: `Permiso de escritura denegado (${writeRes.status}). Asegúrate de que las reglas de Firebase tengan ".write": true.` };
+        return { success: false, message: `Permiso de escritura denegado (${writeRes.status}).` };
       }
 
-      // Guardar URL comprobada
       this.setDatabaseUrl(testUrl);
-      // Subir datos actuales de inmediato
       await this.pushToCloud(true);
-
       return { success: true, message: '¡Conexión establecida con éxito! Los datos ya se sincronizan en la nube.' };
     } catch (err) {
       return { success: false, message: 'Error de red al conectar: ' + (err.message || 'Verifica tu conexión y la URL') };
-    }
-  },
-
-  // Generador de archivo sample-data.js descargable (para sincronización offline en Netlify)
-  exportCatalogAsFile() {
-    const services = AppState.services || [];
-    const addons = AppState.addons || [];
-    const blockedSlots = AppState.blockedSlots || [];
-    const cfg = AppState.config || {};
-    const ambience = AppState.ambienceOptions || {};
-
-    const fileContent = `/**
- * sample-data.js - Catálogo Oficial de Delarosa Nail Designer
- * Generado automáticamente desde el Panel de Julieth el ${new Date().toLocaleDateString('es-CO')}
- * Precios oficiales en COP y horarios actualizados.
- */
-
-const SAMPLE_CONFIG = ${JSON.stringify(cfg, null, 2)};
-
-const OFFICIAL_SERVICES = ${JSON.stringify(services, null, 2)};
-
-const OFFICIAL_ADDONS = ${JSON.stringify(addons, null, 2)};
-
-const AMBIENCE_OPTIONS = ${JSON.stringify(ambience, null, 2)};
-
-const INITIAL_BLOCKED_SLOTS = ${JSON.stringify(blockedSlots, null, 2)};
-
-// Exposición Global
-window.STUDIO_CONFIG = SAMPLE_CONFIG;
-window.OFFICIAL_SERVICES = OFFICIAL_SERVICES;
-window.OFFICIAL_ADDONS = OFFICIAL_ADDONS;
-window.AMBIENCE_OPTIONS = AMBIENCE_OPTIONS;
-window.INITIAL_BLOCKED_SLOTS = INITIAL_BLOCKED_SLOTS;
-`;
-
-    const blob = new Blob([fileContent], { type: 'application/javascript;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'sample-data.js';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-
-    if (typeof showToast === 'function') {
-      showToast('📥 Archivo sample-data.js descargado. Puedes reemplazarlo en tu carpeta.', 'success');
     }
   },
 
@@ -289,26 +288,30 @@ window.INITIAL_BLOCKED_SLOTS = INITIAL_BLOCKED_SLOTS;
         badge.className = 'cloud-sync-badge px-2.5 py-1 rounded-full text-[10px] font-extrabold bg-emerald-950/80 border border-emerald-500/70 text-emerald-300 shadow-xs flex items-center space-x-1';
       } else if (status === 'syncing') {
         badge.className = 'cloud-sync-badge px-2.5 py-1 rounded-full text-[10px] font-extrabold bg-sky-950/80 border border-sky-500/70 text-sky-300 shadow-xs flex items-center space-x-1 animate-pulse';
-      } else if (status === 'error') {
-        badge.className = 'cloud-sync-badge px-2.5 py-1 rounded-full text-[10px] font-extrabold bg-rose-950/80 border border-rose-500/70 text-rose-300 shadow-xs flex items-center space-x-1';
       } else {
         badge.className = 'cloud-sync-badge px-2.5 py-1 rounded-full text-[10px] font-extrabold bg-slate-800/80 border border-slate-600 text-slate-300 shadow-xs flex items-center space-x-1';
       }
     });
   },
 
-  // Iniciar sincronización periódica automática (cada 25 segundos)
-  startPolling(intervalMs = 25000) {
+  // Iniciar sincronización periódica automática (cada 12 segundos)
+  startPolling(intervalMs = 12000) {
     if (this.pollingIntervalId) clearInterval(this.pollingIntervalId);
-    
+
     // Ejecutar de inmediato al arrancar
     this.pullFromCloud(true);
 
     this.pollingIntervalId = setInterval(() => {
-      if (this.isConfigured()) {
-        this.pullFromCloud(true);
-      }
+      this.pullFromCloud(true);
     }, intervalMs);
+
+    // Sincronizar automáticamente cuando el usuario regresa a la pestaña o abre la app
+    if (typeof window !== 'undefined') {
+      window.addEventListener('focus', () => this.pullFromCloud(true));
+      document.addEventListener('visibilitychange', () => {
+        if (!document.hidden) this.pullFromCloud(true);
+      });
+    }
   }
 };
 

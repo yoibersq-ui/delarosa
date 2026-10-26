@@ -79,7 +79,7 @@ const AppState = {
       { id: "mov_1", date: "2026-10-21", type: "income", title: "Cita Uñas Acrílicas - Sofía", amount: 110000 },
       { id: "mov_2", date: "2026-10-21", type: "goal_deposit", title: "Aporte al Mueble del Estudio", amount: 100000 },
       { id: "mov_3", date: "2026-10-22", type: "expense", title: "Compra de Monómero y Pincel Kolinsky", amount: 85000 },
-      { id: "mov_4", date: "2026-10-22", type: "income", title: "Cita Semipermanente - Valentina", amount: 45000 },
+      { id: "mov_4", date: "2026-10-22", type: "income", title: "Cita Semipermanente Manos", amount: 45000 },
       { id: "mov_5", date: "2026-10-23", type: "goal_deposit", title: "Aporte al Mueble del Estudio", amount: 250000 }
     ]
   },
@@ -203,14 +203,13 @@ async function initApplication() {
     // 4. Cargar Horarios Bloqueados
     AppState.blockedSlots = await DB.getAllBlockedSlots();
 
-    // 5. Cargar Citas
+    // 5. Cargar Citas Reales (Sin citas demo ni falsas)
     let appointments = await DB.getAllAppointments();
-    if (!appointments || appointments.length === 0) {
-      for (const apt of window.INITIAL_DEMO_APPOINTMENTS) {
-        await DB.saveAppointment(apt);
-      }
-      appointments = await DB.getAllAppointments();
-    }
+    appointments = (appointments || []).filter(a => 
+      a && a.clientName !== 'Valentina Gómez' && 
+      a.clientName !== 'Carlos Méndez' && 
+      !String(a.id || '').startsWith('CITA-20261022-')
+    );
     AppState.appointments = appointments;
 
     // 5.1 Cargar Finanzas y Meta del Mueble ($1.000.000 COP)
@@ -905,6 +904,7 @@ function updateStepIndicators() {
     const stepEl = document.getElementById(`step-indicator-${num}`);
     if (!stepEl) return;
     stepEl.classList.remove('active', 'completed');
+    stepEl.style.cursor = 'pointer';
     if (num === AppState.step) {
       stepEl.classList.add('active');
     } else if (num < AppState.step) {
@@ -929,6 +929,55 @@ function updateStepIndicators() {
     }
   }
 }
+
+// Navegación interactiva haciendo clic directo en los círculos de pasos (1, 2, 3, 4, 5)
+window.goToStep = function(targetStep) {
+  if (targetStep < 1 || targetStep > AppState.totalSteps) return;
+
+  // Si intenta ir adelante desde el paso 1, validar datos requeridos
+  if (targetStep > 1 && AppState.step === 1) {
+    const nameInput = document.getElementById('clientNameInput');
+    const phoneInput = document.getElementById('clientPhoneInput');
+    const emailInput = document.getElementById('clientEmailInput');
+    const instaInput = document.getElementById('clientInstagramInput');
+
+    if (nameInput && !nameInput.value.trim()) {
+      showToast('Por favor, ingresa tu nombre completo', 'warning');
+      nameInput.focus();
+      return;
+    }
+    if (phoneInput && (!phoneInput.value.trim() || phoneInput.value.trim().length < 7)) {
+      showToast('Por favor, ingresa tu número de WhatsApp para confirmar tu cupo', 'warning');
+      phoneInput.focus();
+      return;
+    }
+
+    if (nameInput && phoneInput) {
+      const rawClientPhone = phoneInput.value.trim();
+      AppState.booking.clientName = nameInput.value.trim();
+      AppState.booking.clientPhone = normalizeColombianPhone(rawClientPhone);
+      AppState.booking.clientPhoneDisplay = formatColombianPhoneDisplay(rawClientPhone);
+      AppState.booking.clientEmail = emailInput ? emailInput.value.trim() : '';
+      AppState.booking.clientInstagram = instaInput ? instaInput.value.trim() : '';
+    }
+  }
+
+  if (AppState.step === 3) {
+    const notesInput = document.getElementById('designNotesInput');
+    if (notesInput) AppState.booking.designNotes = notesInput.value.trim();
+  }
+
+  AppState.step = targetStep;
+
+  if (targetStep === 5) {
+    renderDateTimePickers();
+    renderSummaryConfirmationStep();
+  }
+
+  updateStepIndicators();
+  showCurrentStepCard();
+  updateLivePriceSummary();
+};
 
 function showCurrentStepCard() {
   for (let i = 1; i <= 6; i++) {
@@ -981,6 +1030,7 @@ function goToNextStep() {
   if (AppState.step < AppState.totalSteps) {
     AppState.step++;
     if (AppState.step === 5) {
+      renderDateTimePickers();
       renderSummaryConfirmationStep();
     }
     updateStepIndicators();
@@ -1059,10 +1109,12 @@ function renderNailShapes() {
     const isSelected = AppState.booking.shape === shape.id;
     return `
       <div onclick="selectNailShape('${shape.id}')"
-           class="selectable-card p-3 rounded-xl text-center transition-all cursor-pointer ${isSelected ? 'selected' : ''}">
-        <div class="text-2xl mb-1">${shape.preview}</div>
-        <div class="font-bold text-xs text-white">${shape.name}</div>
-        <div class="text-[11px] text-slate-400 mt-0.5">${shape.desc}</div>
+           class="selectable-card p-3.5 rounded-2xl text-center transition-all cursor-pointer flex flex-col items-center justify-between group ${isSelected ? 'selected ring-2 ring-amber-400 bg-[#16141e]' : 'bg-[#0f0f16] border border-slate-800 hover:border-slate-600'}">
+        <div class="w-full flex items-center justify-center py-1">
+          ${shape.svg ? shape.svg : `<div class="text-2xl mb-1">${shape.preview}</div>`}
+        </div>
+        <div class="font-bold text-xs text-white group-hover:text-amber-300 transition-colors">${shape.name}</div>
+        <div class="text-[10px] text-slate-400 mt-1 line-clamp-2 leading-tight">${shape.desc}</div>
       </div>
     `;
   }).join('');
@@ -1698,6 +1750,20 @@ async function finalizeBooking() {
     const vibe = ambience.vibe?.find(v => v.id === AppState.booking.ambience.vibe);
     const drink = ambience.drink?.find(d => d.id === AppState.booking.ambience.drink);
 
+    // Asegurar fecha y hora por defecto si no se seleccionaron explícitamente
+    if (!AppState.booking.date) {
+      AppState.booking.date = new Date().toISOString().split('T')[0];
+    }
+    if (!AppState.booking.time) {
+      const slotsContainer = document.getElementById('timeSlotsContainer');
+      const firstBtn = slotsContainer ? slotsContainer.querySelector('button') : null;
+      if (firstBtn && firstBtn.textContent) {
+        AppState.booking.time = firstBtn.textContent.trim().split(' ')[0];
+      } else {
+        AppState.booking.time = "09:00";
+      }
+    }
+
     const newAppointment = {
       id: 'CITA-' + new Date().toISOString().slice(0, 10).replace(/-/g, '') + '-' + Math.floor(1000 + Math.random() * 9000),
       clientName: AppState.booking.clientName,
@@ -1732,8 +1798,37 @@ async function finalizeBooking() {
     };
 
     await DB.saveAppointment(newAppointment);
+    AppState.appointments = (AppState.appointments || []).filter(a => a.id !== newAppointment.id);
     AppState.appointments.unshift(newAppointment);
     AppState.lastBookedAppointment = newAppointment;
+
+    // Sincronización instantánea en la nube para que aparezca en el celular de Julieth y en la PC
+    if (typeof CloudSync !== 'undefined') {
+      CloudSync.pushToCloud(true);
+    }
+
+    // Configurar enlace de WhatsApp en el botón para apertura directa sin bloqueo de popups
+    const sendWhatsAppBtn = document.getElementById('sendWhatsAppBtn');
+    if (sendWhatsAppBtn) {
+      const phone = normalizeColombianPhone(AppState.config.phone || '573226376819');
+      const endTime = minutesToTime(timeToMinutes(newAppointment.time) + (newAppointment.durationMin || 180));
+      const waMsg = `✨ *¡Hola ${AppState.config.designerName} / ${AppState.config.studioName}!* ✨\n\n` +
+        `Acabo de agendar una cita desde la app. Aquí están mis detalles:\n\n` +
+        `📋 *Código:* ${newAppointment.id}\n` +
+        `👤 *Clienta:* ${newAppointment.clientName}\n` +
+        `📱 *WhatsApp:* ${formatColombianPhoneDisplay(newAppointment.clientPhone)}\n` +
+        `💅 *Servicio:* ${newAppointment.serviceName}\n` +
+        `💎 *Estructura:* ${newAppointment.shape} (${newAppointment.length})\n` +
+        `🎨 *Nivel de Diseño:* ${newAppointment.designLevel}\n` +
+        `📅 *Fecha:* ${newAppointment.date}\n` +
+        `⏰ *Horario Reservado:* ${newAppointment.time} a ${endTime}\n` +
+        `💰 *Total:* ${formatCOP(newAppointment.totalPrice)}\n` +
+        `💳 *Anticipo a transferir:* ${formatCOP(newAppointment.depositAmount)}\n\n` +
+        `_Quedo atenta para enviarte el comprobante de anticipo. ¡Muchas gracias!_`;
+      const waUrl = `https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(waMsg)}`;
+      sendWhatsAppBtn.href = waUrl;
+      sendWhatsAppBtn.setAttribute('href', waUrl);
+    }
 
     // Disparar envío automático de notificación por correo (estilo lista universitaria)
     if (newAppointment.clientEmail && newAppointment.clientEmail.includes('@')) {
@@ -1748,7 +1843,7 @@ async function finalizeBooking() {
     showCurrentStepCard();
     document.getElementById('bookingSuccessAppointmentId').textContent = newAppointment.id;
 
-    showToast('¡Cita agendada y alarma preparada con éxito!', 'success');
+    showToast('¡Cita agendada y sincronizada en tiempo real!', 'success');
 
   } catch (err) {
     console.error('Error al guardar cita:', err);
@@ -1901,10 +1996,21 @@ async function openWhatsAppDirect() {
     }
   }
 
-  // Fallback directo a WhatsApp wa.me
   const encodedMessage = encodeURIComponent(plainMessage);
-  window.open(`https://wa.me/${phone}?text=${encodedMessage}`, '_blank');
+  const waUrl = `https://api.whatsapp.com/send?phone=${phone}&text=${encodedMessage}`;
+
+  try {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(plainMessage);
+    }
+  } catch (e) {}
+
+  const w = window.open(waUrl, '_blank');
+  if (!w || w.closed || typeof w.closed === 'undefined') {
+    window.location.href = waUrl;
+  }
 }
+window.openWhatsAppDirect = openWhatsAppDirect;
 
 /* ========================================================
    PANEL ADMINISTRADORA / MANICURISTA
@@ -2130,6 +2236,9 @@ window.changeAppointmentStatus = async function(id, newStatus) {
     if (apt) apt.status = newStatus;
     renderAdminAppointments();
     updateAdminMetrics();
+    if (typeof CloudSync !== 'undefined') {
+      CloudSync.pushToCloud(true);
+    }
     showToast(`Estado de cita actualizado: ${newStatus}`, 'success');
   } catch (err) {
     showToast('Error al actualizar el estado', 'error');
@@ -2143,7 +2252,10 @@ window.deleteAppointmentConfirm = async function(id) {
       AppState.appointments = AppState.appointments.filter(a => a.id !== id);
       renderAdminAppointments();
       updateAdminMetrics();
-      showToast('Cita eliminada.', 'info');
+      if (typeof CloudSync !== 'undefined') {
+        CloudSync.pushToCloud(true);
+      }
+      showToast('Cita eliminada de la agenda y de la nube.', 'info');
     } catch (err) {
       showToast('Error al eliminar', 'error');
     }
@@ -2525,8 +2637,16 @@ window.simulateAlarmInterval = function(intervalId) {
 };
 
 window.requestNotificationPermission = async function() {
+  // Desbloquear audio inmediatamente en respuesta a la acción del usuario
+  playAlarmChime();
+
   if (!('Notification' in window)) {
-    showToast('Tu navegador no tiene soporte directo para notificaciones push.', 'warning');
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    if (isIOS) {
+      showToast('📲 Modo iPhone: Para notificaciones en pantalla bloqueada, agrega la app a Inicio (Safari: Compartir ⎋ > Agregar a Inicio). ¡El sonido y los calendarios ya están activados!', 'info', 7000);
+    } else {
+      showToast('El sonido de campanas y los calendarios automáticos están 100% activados.', 'success');
+    }
     return;
   }
   try {
@@ -2534,7 +2654,7 @@ window.requestNotificationPermission = async function() {
     if (permission === 'granted') {
       playAlarmChime();
       new Notification('🔔 Notificaciones y Timbre Activados', {
-        body: '¡Listo! Tu celular te avisará con sonido las citas a las 24h, 2h, 1h y 10 minutos.',
+        body: '¡Listo! Tu teléfono te avisará con sonido las citas a las 24h, 2h, 1h y 10 minutos.',
         icon: AppState.config.customProfilePhoto || (window.DELAROSA_PROFILE_B64 || 'assets/img/delarosa_profile.jpg')
       });
       showToast('¡Notificaciones y sonido activados con éxito!', 'success');
@@ -2544,6 +2664,65 @@ window.requestNotificationPermission = async function() {
   } catch (e) {
     showToast('Activa las notificaciones en los ajustes de tu navegador.', 'info');
   }
+};
+
+// Descargar Recordatorio para Apple Reminders (.ICS con formato VTODO para iPhone)
+window.downloadAppleReminderFileDirect = function(appointmentId) {
+  const apt = appointmentId 
+    ? AppState.appointments.find(a => a.id === appointmentId) 
+    : AppState.lastBookedAppointment;
+  if (!apt) {
+    showToast('No se encontró la información de la cita.', 'warning');
+    return;
+  }
+
+  const startIso = apt.date.replace(/-/g, '') + 'T' + apt.time.replace(':', '') + '00';
+  const endMin = timeToMinutes(apt.time) + (apt.durationMin || 180);
+  const title = `Cita de Uñas: ${AppState.config.studioName} - ${apt.serviceName}`;
+  const details = `Cita con ${AppState.config.designerName}\\nServicio: ${apt.serviceName}\\nFecha: ${apt.date} a las ${apt.time}\\nTotal: ${formatCOP(apt.totalPrice)}\\nUbicación: ${AppState.config.location}\\nWhatsApp: +${AppState.config.phone}`;
+
+  const icsContent = 
+`BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Delarosa Nail Designer//Recordatorios//ES
+CALSCALE:GREGORIAN
+BEGIN:VTODO
+UID:REMINDER-${apt.id}@delarosa.com
+DTSTAMP:${new Date().toISOString().replace(/[-:]/g, '').split('.')[0]}Z
+DUE:${startIso}
+SUMMARY:${title}
+DESCRIPTION:${details}
+LOCATION:${AppState.config.location}
+STATUS:NEEDS-ACTION
+PRIORITY:1
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⏰ Faltan 2 horas para tu cita de uñas en ${AppState.config.studioName}
+TRIGGER:-PT2H
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:⏰ Falta 1 hora para tu cita de uñas con ${AppState.config.designerName}
+TRIGGER:-PT1H
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:🔔 Tu cita en ${AppState.config.studioName} comienza en 10 minutos
+TRIGGER:-PT10M
+END:VALARM
+END:VTODO
+END:VCALENDAR`;
+
+  const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `Recordatorio_iPhone_${apt.clientName.replace(/\s+/g, '_')}_${apt.date}.ics`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  showToast('¡Recordatorio preparado! Toca para agregarlo a la app Recordatorios de tu iPhone.', 'success');
 };
 
 /* ========================================================

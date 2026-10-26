@@ -1,0 +1,14 @@
+{
+  "updatedAt": "2026-10-25T21:55:00.000Z",
+  "updatedBy": "Delarosa Cloud Sync",
+  "appointments": [],
+  "blockedSlots": [],
+  "finances": {
+    "goal": {
+      "title": "Mueble de Almacenamiento & Organizador VIP",
+      "targetAmount": 1000000,
+      "savedAmount": 280000
+    },
+    "recentTransactions": []
+  }
+}
