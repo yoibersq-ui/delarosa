@@ -1,4 +1,4 @@
-/**
+﻿/**
  * sample-data.js - Configuración oficial y catálogo de Delarosa Nail Designer
  * Ubicación: Apartadó - Antioquia (Barrio Laureles)
  * Instagram: @delarosaa_02
@@ -23,7 +23,6 @@ const SAMPLE_CONFIG = {
   adminPassword: "GabrielyEly25", // Contraseña obligatoria del panel
   depositPercentage: 30, // 30% de anticipo para apartar cupo
   paymentMethods: "Nequi / Daviplata: 322 637 6819 | Bancolombia Ahorros (A nombre de Julieth De la Rosa)",
-  cloudDbUrl: "/api/sync", // Sincronización en tiempo real automática en la nube (Vercel API)
   
   // Fotos personalizadas (por defecto usan las imágenes de assets)
   customProfilePhoto: null,
@@ -224,117 +223,12 @@ const OFFICIAL_ADDONS = [
 ];
 
 const NAIL_SHAPES = [
-  {
-    id: "almond",
-    name: "Almendra",
-    desc: "Alarga visualmente y estiliza los dedos con punta suavemente redondeada",
-    preview: "Almendra",
-    svg: `<svg viewBox="0 0 60 90" class="w-10 h-14 mx-auto mb-1.5" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M14 74 C14 54, 16 36, 22 20 C25 12, 28 8, 30 8 C32 8, 35 12, 38 20 C44 36, 46 54, 46 74 C46 80, 14 80, 14 74 Z" fill="url(#gradAlmond)" stroke="#e2d4be" stroke-width="1.6"/>
-      <path d="M22 26 C26 18, 30 16, 34 20" stroke="#ffffff" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
-      <ellipse cx="30" cy="74" rx="13" ry="4.5" fill="#181822" opacity="0.6"/>
-      <defs>
-        <linearGradient id="gradAlmond" x1="0" y1="0" x2="60" y2="90" gradientUnits="userSpaceOnUse">
-          <stop stop-color="#3d2c3e"/>
-          <stop offset="0.6" stop-color="#1f1624"/>
-          <stop offset="1" stop-color="#110d14"/>
-        </linearGradient>
-      </defs>
-    </svg>`
-  },
-  {
-    id: "coffin",
-    name: "Coffin / Bailarina",
-    desc: "Sofisticada, recta con punta cortada horizontal",
-    preview: "Coffin",
-    svg: `<svg viewBox="0 0 60 90" class="w-10 h-14 mx-auto mb-1.5" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M14 74 C15 54, 18 36, 23 13 L37 13 C42 36, 45 54, 46 74 C46 80, 14 80, 14 74 Z" fill="url(#gradCoffin)" stroke="#e2d4be" stroke-width="1.6"/>
-      <path d="M23 13 L37 13" stroke="#ffffff" stroke-width="2.2" stroke-linecap="square"/>
-      <path d="M25 24 C28 17, 32 17, 35 24" stroke="#ffffff" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
-      <ellipse cx="30" cy="74" rx="13" ry="4.5" fill="#181822" opacity="0.6"/>
-      <defs>
-        <linearGradient id="gradCoffin" x1="0" y1="0" x2="60" y2="90" gradientUnits="userSpaceOnUse">
-          <stop stop-color="#3d2c3e"/>
-          <stop offset="0.6" stop-color="#1f1624"/>
-          <stop offset="1" stop-color="#110d14"/>
-        </linearGradient>
-      </defs>
-    </svg>`
-  },
-  {
-    id: "square",
-    name: "Cuadrada Clásica",
-    desc: "Bordes limpios, paralelos y rectos definidos",
-    preview: "Cuadrada",
-    svg: `<svg viewBox="0 0 60 90" class="w-10 h-14 mx-auto mb-1.5" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M15 74 L15 13 L45 13 L45 74 C45 80, 15 80, 15 74 Z" fill="url(#gradSquare)" stroke="#e2d4be" stroke-width="1.6"/>
-      <path d="M15 13 L45 13" stroke="#ffffff" stroke-width="2.2" stroke-linecap="square"/>
-      <line x1="20" y1="20" x2="20" y2="36" stroke="#ffffff" stroke-width="1.2" opacity="0.6" stroke-linecap="round"/>
-      <ellipse cx="30" cy="74" rx="13" ry="4.5" fill="#181822" opacity="0.6"/>
-      <defs>
-        <linearGradient id="gradSquare" x1="0" y1="0" x2="60" y2="90" gradientUnits="userSpaceOnUse">
-          <stop stop-color="#3d2c3e"/>
-          <stop offset="0.6" stop-color="#1f1624"/>
-          <stop offset="1" stop-color="#110d14"/>
-        </linearGradient>
-      </defs>
-    </svg>`
-  },
-  {
-    id: "squoval",
-    name: "Squoval (Cuadrada Oval)",
-    desc: "Cuadrada con esquinas suavemente redondeadas",
-    preview: "Squoval",
-    svg: `<svg viewBox="0 0 60 90" class="w-10 h-14 mx-auto mb-1.5" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M15 74 L15 20 Q15 13 22 13 L38 13 Q45 13 45 20 L45 74 C45 80, 15 80, 15 74 Z" fill="url(#gradSquoval)" stroke="#e2d4be" stroke-width="1.6"/>
-      <path d="M20 13 L40 13" stroke="#ffffff" stroke-width="1.8"/>
-      <ellipse cx="30" cy="74" rx="13" ry="4.5" fill="#181822" opacity="0.6"/>
-      <defs>
-        <linearGradient id="gradSquoval" x1="0" y1="0" x2="60" y2="90" gradientUnits="userSpaceOnUse">
-          <stop stop-color="#3d2c3e"/>
-          <stop offset="0.6" stop-color="#1f1624"/>
-          <stop offset="1" stop-color="#110d14"/>
-        </linearGradient>
-      </defs>
-    </svg>`
-  },
-  {
-    id: "stiletto",
-    name: "Stiletto (En punta)",
-    desc: "Puntiaguda y de alto impacto estético",
-    preview: "Stiletto",
-    svg: `<svg viewBox="0 0 60 90" class="w-10 h-14 mx-auto mb-1.5" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M14 74 C15 54, 18 36, 30 6 C42 36, 45 54, 46 74 C46 80, 14 80, 14 74 Z" fill="url(#gradStiletto)" stroke="#e2d4be" stroke-width="1.6"/>
-      <circle cx="30" cy="7" r="1.5" fill="#ffffff"/>
-      <path d="M26 22 L30 10 L34 22" stroke="#ffffff" stroke-width="1.2" opacity="0.7"/>
-      <ellipse cx="30" cy="74" rx="13" ry="4.5" fill="#181822" opacity="0.6"/>
-      <defs>
-        <linearGradient id="gradStiletto" x1="0" y1="0" x2="60" y2="90" gradientUnits="userSpaceOnUse">
-          <stop stop-color="#3d2c3e"/>
-          <stop offset="0.6" stop-color="#1f1624"/>
-          <stop offset="1" stop-color="#110d14"/>
-        </linearGradient>
-      </defs>
-    </svg>`
-  },
-  {
-    id: "oval",
-    name: "Ovalada Natural",
-    desc: "Curva delicada que respeta el contorno natural",
-    preview: "Ovalada",
-    svg: `<svg viewBox="0 0 60 90" class="w-10 h-14 mx-auto mb-1.5" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M15 74 C15 50, 17 28, 30 13 C43 28, 45 50, 45 74 C45 80, 15 80, 15 74 Z" fill="url(#gradOval)" stroke="#e2d4be" stroke-width="1.6"/>
-      <path d="M22 24 C26 18, 34 18, 38 24" stroke="#ffffff" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/>
-      <ellipse cx="30" cy="74" rx="13" ry="4.5" fill="#181822" opacity="0.6"/>
-      <defs>
-        <linearGradient id="gradOval" x1="0" y1="0" x2="60" y2="90" gradientUnits="userSpaceOnUse">
-          <stop stop-color="#3d2c3e"/>
-          <stop offset="0.6" stop-color="#1f1624"/>
-          <stop offset="1" stop-color="#110d14"/>
-        </linearGradient>
-      </defs>
-    </svg>`
-  }
+  { id: "almond", name: "Almendra", desc: "Alarga visualmente y estiliza los dedos", preview: "🌰" },
+  { id: "coffin", name: "Coffin / Bailarina", desc: "Sofisticada, recta con punta cortada", preview: "🩰" },
+  { id: "square", name: "Cuadrada Clásica", desc: "Bordes limpios y rectos definidos", preview: "⬛" },
+  { id: "squoval", name: "Squoval (Cuadrada Oval)", desc: "Cuadrada con esquinas suavemente redondeadas", preview: "🔲" },
+  { id: "stiletto", name: "Stiletto (En punta)", desc: "Puntiaguda y de alto impacto estético", preview: "💎" },
+  { id: "oval", name: "Ovalada Natural", desc: "Curva delicada que respeta el contorno natural", preview: "⭕" }
 ];
 
 const NAIL_LENGTHS = [
@@ -408,7 +302,7 @@ const AMBIENCE_OPTIONS = {
   ]
 };
 
-// Citas iniciales para la agenda (Vacía por defecto: no generar citas falsas)
+// Citas iniciales para la agenda
 const INITIAL_DEMO_APPOINTMENTS = [];
 
 window.SAMPLE_CONFIG = SAMPLE_CONFIG;
