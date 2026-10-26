@@ -1,4 +1,4 @@
-/**
+﻿/**
  * db.js - Gestión de almacenamiento persistente usando IndexedDB
  * Soporta citas, fotos en alta resolución, catálogo editable de servicios y bloqueos de horarios.
  */
@@ -64,6 +64,20 @@ function openDB() {
 const DB = {
   // --- CITAS ---
   async getAllAppointments() {
+    if (typeof SupabaseSync !== 'undefined' && SupabaseSync.isConfigured()) {
+      try {
+        const cloudList = await SupabaseSync.getAllAppointments();
+        if (Array.isArray(cloudList)) {
+          const db = await openDB();
+          const tx = db.transaction('appointments', 'readwrite');
+          const store = tx.objectStore('appointments');
+          for (const item of cloudList) { store.put(item); }
+          return cloudList;
+        }
+      } catch (err) {
+        console.warn('[DB] SupabaseSync.getAllAppointments fallback a IndexedDB:', err);
+      }
+    }
     const db = await openDB();
     return new Promise((resolve, reject) => {
       const tx = db.transaction('appointments', 'readonly');
@@ -96,7 +110,12 @@ const DB = {
       const tx = db.transaction('appointments', 'readwrite');
       const store = tx.objectStore('appointments');
       const request = store.put(appointment);
-      request.onsuccess = () => resolve(appointment);
+      request.onsuccess = () => {
+        if (typeof SupabaseSync !== 'undefined' && SupabaseSync.isConfigured()) {
+          SupabaseSync.saveAppointment(appointment).catch(e => console.warn('[DB] Error Supabase saveAppointment:', e));
+        }
+        resolve(appointment);
+      };
       request.onerror = () => reject(request.error);
     });
   },
@@ -115,7 +134,12 @@ const DB = {
       const tx = db.transaction('appointments', 'readwrite');
       const store = tx.objectStore('appointments');
       const request = store.delete(id);
-      request.onsuccess = () => resolve(true);
+      request.onsuccess = () => {
+        if (typeof SupabaseSync !== 'undefined' && SupabaseSync.isConfigured()) {
+          SupabaseSync.deleteAppointment(id).catch(e => console.warn('[DB] Error Supabase deleteAppointment:', e));
+        }
+        resolve(true);
+      };
       request.onerror = () => reject(request.error);
     });
   },
@@ -149,7 +173,12 @@ const DB = {
       const tx = db.transaction('services', 'readwrite');
       const store = tx.objectStore('services');
       const request = store.delete(id);
-      request.onsuccess = () => resolve(true);
+      request.onsuccess = () => {
+        if (typeof SupabaseSync !== 'undefined' && SupabaseSync.isConfigured()) {
+          SupabaseSync.deleteAppointment(id).catch(e => console.warn('[DB] Error Supabase deleteAppointment:', e));
+        }
+        resolve(true);
+      };
       request.onerror = () => reject(request.error);
     });
   },
@@ -183,13 +212,30 @@ const DB = {
       const tx = db.transaction('addons', 'readwrite');
       const store = tx.objectStore('addons');
       const request = store.delete(id);
-      request.onsuccess = () => resolve(true);
+      request.onsuccess = () => {
+        if (typeof SupabaseSync !== 'undefined' && SupabaseSync.isConfigured()) {
+          SupabaseSync.deleteAppointment(id).catch(e => console.warn('[DB] Error Supabase deleteAppointment:', e));
+        }
+        resolve(true);
+      };
       request.onerror = () => reject(request.error);
     });
   },
 
   // --- BLOQUEOS DE HORARIO (MANICURISTA) ---
   async getAllBlockedSlots() {
+    if (typeof SupabaseSync !== 'undefined' && SupabaseSync.isConfigured()) {
+      try {
+        const cloudSlots = await SupabaseSync.getAllBlockedSlots();
+        if (Array.isArray(cloudSlots)) {
+          const db = await openDB();
+          const tx = db.transaction('blockedSlots', 'readwrite');
+          const store = tx.objectStore('blockedSlots');
+          for (const s of cloudSlots) { store.put(s); }
+          return cloudSlots;
+        }
+      } catch (err) {}
+    }
     const db = await openDB();
     return new Promise((resolve, reject) => {
       const tx = db.transaction('blockedSlots', 'readonly');
@@ -206,7 +252,12 @@ const DB = {
       const tx = db.transaction('blockedSlots', 'readwrite');
       const store = tx.objectStore('blockedSlots');
       const request = store.put(slot);
-      request.onsuccess = () => resolve(slot);
+      request.onsuccess = () => {
+        if (typeof SupabaseSync !== 'undefined' && SupabaseSync.isConfigured()) {
+          SupabaseSync.saveBlockedSlot(slot).catch(console.error);
+        }
+        resolve(slot);
+      };
       request.onerror = () => reject(request.error);
     });
   },
@@ -217,7 +268,12 @@ const DB = {
       const tx = db.transaction('blockedSlots', 'readwrite');
       const store = tx.objectStore('blockedSlots');
       const request = store.delete(id);
-      request.onsuccess = () => resolve(true);
+      request.onsuccess = () => {
+        if (typeof SupabaseSync !== 'undefined' && SupabaseSync.isConfigured()) {
+          SupabaseSync.deleteAppointment(id).catch(e => console.warn('[DB] Error Supabase deleteAppointment:', e));
+        }
+        resolve(true);
+      };
       request.onerror = () => reject(request.error);
     });
   },

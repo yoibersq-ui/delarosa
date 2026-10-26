@@ -23,6 +23,10 @@ const SAMPLE_CONFIG = {
   adminPassword: "GabrielyEly25", // Contraseña obligatoria del panel
   depositPercentage: 30, // 30% de anticipo para apartar cupo
   paymentMethods: "Nequi / Daviplata: 322 637 6819 | Bancolombia Ahorros (A nombre de Julieth De la Rosa)",
+
+  // Conexión Supabase (PostgreSQL en tiempo real)
+  supabaseUrl: "",
+  supabaseAnonKey: "",
   
   // Fotos personalizadas (por defecto usan las imágenes de assets)
   customProfilePhoto: null,

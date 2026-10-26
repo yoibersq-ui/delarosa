@@ -246,6 +246,9 @@ async function initApplication() {
     if (typeof CloudSync !== 'undefined') {
       CloudSync.startPolling();
     }
+    if (typeof SupabaseSync !== 'undefined') {
+      SupabaseSync.initRealtime();
+    }
 
     // Vista inicial
     const hash = window.location.hash;
